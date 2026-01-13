@@ -98,14 +98,13 @@
 
         /* 섹션 공통 스타일 */
         section {
-            padding: 120px 60px;
-            min-height: 100vh;
+            padding: 100px 60px;
         }
 
         .section-title {
             font-size: 48px;
             letter-spacing: 8px;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             text-align: center;
         }
 
@@ -119,126 +118,71 @@
             opacity: 0.8;
         }
 
-        /* 미디어 그리드 */
-        .media-grid {
+        /* 연도별 섹션 */
+        .year-section {
+            margin-bottom: 100px;
+        }
+
+        .year-title {
+            font-size: 36px;
+            letter-spacing: 6px;
+            margin-bottom: 40px;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        /* 비디오 그리드 */
+        .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+
+        .video-item {
+            aspect-ratio: 16/9;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .video-item:hover {
+            transform: scale(1.02);
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 포스터 그리드 */
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .media-item {
-            aspect-ratio: 16/9;
+        .poster-item {
+            aspect-ratio: 3/4;
             background: #1a1a1a;
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.3s;
-            position: relative;
         }
 
-        .media-item:hover {
+        .poster-item:hover {
             transform: scale(1.05);
         }
 
-        .media-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            letter-spacing: 2px;
-            opacity: 0.5;
-        }
-
-        .media-item .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-        }
-
-        /* 갤러리 그리드 */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            aspect-ratio: 1;
-            background: #1a1a1a;
-            border-radius: 4px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item img {
+        .poster-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        /* 티켓/굿즈 카드 */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: #1a1a1a;
-            padding: 40px;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card h3 {
-            font-size: 24px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
-
-        .card p {
-            opacity: 0.7;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: #fff;
-            color: #000;
-            text-decoration: none;
-            letter-spacing: 2px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background: #ccc;
-            transform: scale(1.05);
         }
 
         /* Contact 섹션 */
@@ -260,6 +204,25 @@
 
         .contact-info a:hover {
             opacity: 0.6;
+        }
+
+        .ticket-btn {
+            display: inline-block;
+            padding: 20px 50px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .ticket-btn:hover {
+            background: #ccc;
+            transform: scale(1.05);
         }
 
         /* Footer */
@@ -296,7 +259,7 @@
             }
 
             section {
-                padding: 80px 30px;
+                padding: 60px 30px;
             }
 
             .section-title {
@@ -304,8 +267,12 @@
                 letter-spacing: 4px;
             }
 
-            .media-grid,
-            .gallery-grid {
+            .year-title {
+                font-size: 28px;
+            }
+
+            .video-grid,
+            .poster-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -320,7 +287,6 @@
             <a href="#video">VIDEO</a>
             <a href="#gallery">GALLERY</a>
             <a href="#ticket">TICKET</a>
-            <a href="#goods">GOODS</a>
             <a href="#contact">CONTACT</a>
         </nav>
     </header>
@@ -329,7 +295,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>TRANS</h1>
-            <p>TRANSFORMATION · TRANSCENDENCE · TRANSMISSION</p>
+            <p>SERIES</p>
         </div>
     </section>
 
@@ -351,83 +317,65 @@
     <!-- Video -->
     <section id="video">
         <h2 class="section-title">VIDEO</h2>
-        <div class="media-grid">
-            <div class="media-item">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/_6Oy36i2vzc" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                <div class="overlay">
-                    <h3>TRANS (2023)</h3>
+        
+        <!-- 2023 -->
+        <div class="year-section">
+            <h3 class="year-title">2023</h3>
+            <div class="video-grid">
+                <div class="video-item">
+                    <iframe 
+                        src="https://www.youtube.com/embed/_6Oy36i2vzc" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
-            <div class="media-item">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/ZejhivrvxYE" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                <div class="overlay">
-                    <h3>TRANS (2024)</h3>
+        </div>
+
+        <!-- 2024 -->
+        <div class="year-section">
+            <h3 class="year-title">2024</h3>
+            <div class="video-grid">
+                <div class="video-item">
+                    <iframe 
+                        src="https://www.youtube.com/embed/ZejhivrvxYE" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
-            </div>
-            <div class="media-item">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/aY1vCnlTIQs" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                <div class="overlay">
-                    <h3>TRANS (2024)</h3>
+                <div class="video-item">
+                    <iframe 
+                        src="https://www.youtube.com/embed/aY1vCnlTIQs" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
-            </div>
-            <div class="media-item">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/o2LwtSzmLSI" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                <div class="overlay">
-                    <h3>TRANS (2024)</h3>
+                <div class="video-item">
+                    <iframe 
+                        src="https://www.youtube.com/embed/o2LwtSzmLSI" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
-            </div>
-            <div class="media-item">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/w427jpVgYeQ" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                <div class="overlay">
-                    <h3>TRANS (2024)</h3>
+                <div class="video-item">
+                    <iframe 
+                        src="https://www.youtube.com/embed/w427jpVgYeQ" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
-            </div>
-            <div class="media-item">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/-yHvPNLa9h8" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                <div class="overlay">
-                    <h3>TRANS (2024)</h3>
+                <div class="video-item">
+                    <iframe 
+                        src="https://www.youtube.com/embed/-yHvPNLa9h8" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -436,21 +384,40 @@
     <!-- Gallery -->
     <section id="gallery">
         <h2 class="section-title">GALLERY</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://drive.google.com/thumbnail?id=12xmIJkaaOEQ7UZIYrhmLkojl78Sek6Ds&sz=w1000" alt="TRANS 2023">
+        
+        <!-- 2023 -->
+        <div class="year-section">
+            <h3 class="year-title">2023</h3>
+            <div class="poster-grid">
+                <div class="poster-item">
+                    <img src="https://drive.google.com/thumbnail?id=12xmIJkaaOEQ7UZIYrhmLkojl78Sek6Ds&sz=w1000" alt="TRANS 2023">
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="https://drive.google.com/thumbnail?id=1wilGxR5goT-bu8VCtFVIInpfY0MPDsUf&sz=w1000" alt="TRANS 2024">
+        </div>
+
+        <!-- 2024 -->
+        <div class="year-section">
+            <h3 class="year-title">2024</h3>
+            <div class="poster-grid">
+                <div class="poster-item">
+                    <img src="https://drive.google.com/thumbnail?id=1wilGxR5goT-bu8VCtFVIInpfY0MPDsUf&sz=w1000" alt="TRANS 2024">
+                </div>
+                <div class="poster-item">
+                    <img src="https://drive.google.com/thumbnail?id=13SzuV0bf98Bo2R_HLf7-NPgSjDViDqZG&sz=w1000" alt="TRANS 2024">
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="https://drive.google.com/thumbnail?id=13SzuV0bf98Bo2R_HLf7-NPgSjDViDqZG&sz=w1000" alt="TRANS 2024">
-            </div>
-            <div class="gallery-item">
-                <img src="https://drive.google.com/thumbnail?id=1eSgDgOR80zjyq23_eKKujvnqDVl_pM_z&sz=w1000" alt="TRANS 2025">
-            </div>
-            <div class="gallery-item">
-                <img src="https://drive.google.com/thumbnail?id=1cnRtO2oii6T3qPb-EdXz2HQY149Mbmpv&sz=w1000" alt="TRANS 2025">
+        </div>
+
+        <!-- 2025 -->
+        <div class="year-section">
+            <h3 class="year-title">2025</h3>
+            <div class="poster-grid">
+                <div class="poster-item">
+                    <img src="https://drive.google.com/thumbnail?id=1eSgDgOR80zjyq23_eKKujvnqDVl_pM_z&sz=w1000" alt="TRANS 2025">
+                </div>
+                <div class="poster-item">
+                    <img src="https://drive.google.com/thumbnail?id=1cnRtO2oii6T3qPb-EdXz2HQY149Mbmpv&sz=w1000" alt="TRANS 2025">
+                </div>
             </div>
         </div>
     </section>
@@ -458,68 +425,9 @@
     <!-- Ticket -->
     <section id="ticket">
         <h2 class="section-title">TICKET</h2>
-        <div class="cards-container">
-            <div class="card">
-                <h3>TRANS Vol.6</h3>
-                <p>
-                    2025.03.20 - 03.22<br>
-                    서울 대학로 예술극장<br>
-                    ₩50,000
-                </p>
-                <a href="#" class="btn">예매하기</a>
-            </div>
-            <div class="card">
-                <h3>TRANS Vol.7</h3>
-                <p>
-                    2025.06.15 - 06.17<br>
-                    부산 문화회관<br>
-                    ₩50,000
-                </p>
-                <a href="#" class="btn">예매하기</a>
-            </div>
-            <div class="card">
-                <h3>시즌권</h3>
-                <p>
-                    2025 전체 공연<br>
-                    Vol.6 - Vol.9<br>
-                    ₩180,000
-                </p>
-                <a href="#" class="btn">구매하기</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Goods -->
-    <section id="goods">
-        <h2 class="section-title">GOODS</h2>
-        <div class="cards-container">
-            <div class="card">
-                <h3>공연 포스터</h3>
-                <p>
-                    A2 사이즈<br>
-                    고급 아트지 인쇄<br>
-                    ₩25,000
-                </p>
-                <a href="#" class="btn">구매하기</a>
-            </div>
-            <div class="card">
-                <h3>티셔츠</h3>
-                <p>
-                    TRANS 로고<br>
-                    블랙/화이트<br>
-                    ₩35,000
-                </p>
-                <a href="#" class="btn">구매하기</a>
-            </div>
-            <div class="card">
-                <h3>아트북</h3>
-                <p>
-                    공연 사진집<br>
-                    120페이지<br>
-                    ₩45,000
-                </p>
-                <a href="#" class="btn">구매하기</a>
-            </div>
+        <div style="text-align: center;">
+            <p style="margin-bottom: 20px; opacity: 0.8;">다가오는 공연의 티켓을 예매하세요</p>
+            <a href="ticket.html" class="ticket-btn">티켓 예매하기</a>
         </div>
     </section>
 
