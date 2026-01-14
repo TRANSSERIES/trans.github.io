@@ -35,12 +35,16 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: 6px;
+            height: 40px;
             cursor: pointer;
             transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
         }
 
         .logo:hover {
@@ -86,11 +90,9 @@
             gap: 30px;
         }
 
-        .home-hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 120px;
-            font-weight: 700;
-            letter-spacing: 8px;
+        .home-hero img {
+            max-height: 250px;
+            width: auto;
         }
 
         .home-hero p {
@@ -478,7 +480,9 @@
 <body>
     <!-- 헤더 -->
     <header>
-        <div class="logo" onclick="showPage('home')">TRANS</div>
+        <div class="logo" onclick="showPage('home')">
+            <img src="https://drive.google.com/uc?id=1kHCYZN7hzAU83u6scLdXESoFxK292aVf&export=download" alt="TRANS">
+        </div>
         <nav>
             <a href="#" onclick="showPage('home'); return false;">HOME</a>
             <a href="#" onclick="showPage('about'); return false;">ABOUT</a>
