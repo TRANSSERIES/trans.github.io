@@ -35,7 +35,7 @@
         }
 
         .logo {
-            height: 40px;
+            height: 50px;
             cursor: pointer;
             transition: opacity 0.3s;
             display: flex;
@@ -45,6 +45,7 @@
         .logo img {
             height: 100%;
             width: auto;
+            max-width: 200px;
         }
 
         .logo:hover {
@@ -91,8 +92,17 @@
         }
 
         .home-hero img {
-            max-height: 250px;
+            max-height: 280px;
             width: auto;
+            display: block;
+        }
+        
+        .home-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 120px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            display: none;
         }
 
         .home-hero p {
@@ -481,7 +491,7 @@
     <!-- 헤더 -->
     <header>
         <div class="logo" onclick="showPage('home')">
-            <img src="https://drive.google.com/uc?id=1kHCYZN7hzAU83u6scLdXESoFxK292aVf&export=download" alt="TRANS">
+            <img src="https://lh3.googleusercontent.com/d/1kHCYZN7hzAU83u6scLdXESoFxK292aVf=w400" alt="TRANS">
         </div>
         <nav>
             <a href="#" onclick="showPage('home'); return false;">HOME</a>
