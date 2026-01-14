@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRANS</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,7 +13,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             background: #000;
             color: #fff;
             overflow-x: hidden;
@@ -89,6 +88,7 @@
             align-items: center;
             justify-content: center;
             gap: 30px;
+            position: relative;
         }
 
         .home-hero img {
@@ -115,7 +115,9 @@
         .social-icons {
             display: flex;
             gap: 25px;
-            margin-top: 40px;
+            margin-top: 100px;
+            position: absolute;
+            bottom: 60px;
         }
 
         .social-icons a {
@@ -238,6 +240,10 @@
             height: 100%;
             object-fit: contain;
             background: #1a1a1a;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .slider-btn {
@@ -404,6 +410,7 @@
             margin-bottom: 15px;
             opacity: 0.8;
             transition: all 0.3s;
+            color: #fff;
         }
 
         .contact-item a {
@@ -491,7 +498,7 @@
     <!-- 헤더 -->
     <header>
         <div class="logo" onclick="showPage('home')">
-            <img src="https://lh3.googleusercontent.com/d/1kHCYZN7hzAU83u6scLdXESoFxK292aVf=w400" alt="TRANS">
+            <img src="https://lh3.googleusercontent.com/d/1F_94TKqnY_R5JDh1AFkEeEv3aO2Dl8mM=w400" alt="TRANS">
         </div>
         <nav>
             <a href="#" onclick="showPage('home'); return false;">HOME</a>
@@ -638,19 +645,16 @@
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
-                        <div>EMAIL</div>
                     </a>
                     <a href="https://www.instagram.com/trans_series" target="_blank" class="contact-item">
                         <div class="contact-icon">
                             <i class="fab fa-instagram"></i>
                         </div>
-                        <div>INSTAGRAM</div>
                     </a>
                     <a href="https://www.youtube.com/@transseries" target="_blank" class="contact-item">
                         <div class="contact-icon">
                             <i class="fab fa-youtube"></i>
                         </div>
-                        <div>YOUTUBE</div>
                     </a>
                 </div>
                 
@@ -771,6 +775,27 @@
         initSlider('2023');
         initSlider('2024');
         initSlider('2025');
+
+        // 이미지 보호 - 우클릭 방지
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // 이미지 드래그 방지
+        document.addEventListener('dragstart', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // 개발자 도구에서 이미지 저장 방지
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
