@@ -6,718 +6,83 @@
     <title>TRANS</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* 헤더 */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 25px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(0,0,0,0.98);
-            border-bottom: 1px solid #222;
-        }
-
-        .logo {
-            height: 60px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-            max-width: 300px;
-        }
-
-        .logo:hover {
-            opacity: 0.7;
-        }
-
-        nav {
-            display: flex;
-            gap: 50px;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.6;
-        }
-
-        /* 페이지 컨테이너 */
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding-top: 100px;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* HOME 페이지 */
-        .home-hero {
-            height: calc(100vh - 100px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 180px;
-            gap: 5px;
-            position: relative;
-        }
-
-        .home-hero img {
-            max-height: 400px;
-            width: auto;
-            display: block;
-        }
-        
-        .home-hero h1 {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            font-size: 140px;
-            font-weight: 900;
-            letter-spacing: -2px;
-            display: block;
-        }
-
-        .home-hero p {
-            font-size: 14px;
-            letter-spacing: 2px;
-            opacity: 0.6;
-            font-weight: 700;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 25px;
-            margin-top: 100px;
-            position: absolute;
-            bottom: 60px;
-        }
-
-        .social-icons a {
-            color: #fff;
-            font-size: 18px;
-            transition: all 0.3s;
-            opacity: 0.7;
-        }
-
-        .social-icons a:hover {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-
-        /* 공통 페이지 스타일 */
-        .page-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 80px 60px;
-        }
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 52px;
-            letter-spacing: 4px;
-            margin-bottom: 80px;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        /* ABOUT 페이지 */
-        .about-main h2 {
-            font-size: 20px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            text-align: center;
-            opacity: 0.9;
-        }
-
-        .about-text {
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            font-size: 14px;
-            opacity: 0.8;
-            text-align: left;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-        }
-
-        /* PROJECTS 페이지 */
-        .projects-list {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .project-item {
-            padding: 35px 0;
-            border-bottom: 1px solid #333;
-        }
-
-        .project-item:last-child {
-            border-bottom: none;
-        }
-
-        .project-title {
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .project-info {
-            font-size: 12px;
-            opacity: 0.6;
-            letter-spacing: 0.5px;
-        }
-
-        /* 갤러리 슬라이더 */
-        .gallery-section {
-            margin-bottom: 100px;
-        }
-
-        .gallery-year {
-            font-size: 20px;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-align: center;
-            opacity: 0.7;
-            font-weight: 300;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .slider {
-            overflow: hidden;
-            border-radius: 2px;
-        }
-
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .slide {
-            min-width: 100%;
-            aspect-ratio: 3/2;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #1a1a1a;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.08);
-            border: none;
-            color: #fff;
-            font-size: 20px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background 0.3s;
-            z-index: 10;
-        }
-
-        .slider-btn:hover {
-            background: rgba(255,255,255,0.15);
-        }
-
-        .slider-btn.prev {
-            left: 15px;
-        }
-
-        .slider-btn.next {
-            right: 15px;
-        }
-
-        .slider-dots {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #444;
-            margin: 0 6px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .dot.active {
-            background: #fff;
-        }
-
-        /* TICKET 페이지 */
-        .ticket-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .ticket-info {
-            margin-bottom: 50px;
-            padding: 40px;
-            background: #0a0a0a;
-            border: 1px solid #222;
-            border-radius: 2px;
-        }
-
-        .ticket-info h3 {
-            font-size: 20px;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .ticket-info p {
-            font-size: 13px;
-            line-height: 1.8;
-            opacity: 0.75;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            opacity: 0.7;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 10px 12px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: #fff;
-            font-size: 13px;
-            border-radius: 2px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #666;
-            background: #252525;
-        }
-
-        .ticket-btn {
-            display: inline-block;
-            width: 100%;
-            padding: 14px;
-            background: #fff;
-            color: #000;
-            text-decoration: none;
-            letter-spacing: 1.5px;
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 2px;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .ticket-btn:hover {
-            background: #ccc;
-            transform: scale(1.02);
-        }
-
-        .ticket-btn.disabled {
-            background: #444;
-            color: #999;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        .coming-soon {
-            text-align: center;
-            padding: 40px;
-            opacity: 0.5;
-            font-size: 14px;
-            letter-spacing: 2px;
-        }
-
-        /* CONTACT 페이지 */
-        .contact-content {
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-icons {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .contact-item {
-            text-align: center;
-        }
-
-        .contact-icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-            opacity: 0.8;
-            transition: all 0.3s;
-            color: #fff;
-        }
-
-        .contact-item a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 1px;
-            transition: opacity 0.3s;
-        }
-
-        .contact-item a:hover {
-            opacity: 0.6;
-        }
-
-        .contact-item a:hover .contact-icon {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .contact-divider {
-            width: 40px;
-            height: 1px;
-            background: #333;
-            margin: 50px auto;
-        }
-
-        .contact-text {
-            font-size: 13px;
-            line-height: 2;
-            opacity: 0.7;
-        }
-
-        /* Footer */
-        footer {
-            padding: 40px;
-            text-align: center;
-            opacity: 0.4;
-            font-size: 11px;
-            letter-spacing: 2px;
-            border-top: 1px solid #333;
-        }
-
-        /* 반응형 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+        header { position: fixed; top: 0; width: 100%; padding: 25px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(0,0,0,0.98); border-bottom: 1px solid #222; }
+        .logo { height: 60px; cursor: pointer; transition: opacity 0.3s; }
+        .logo img { height: 100%; width: auto; max-width: 300px; }
+        .logo:hover { opacity: 0.7; }
+        nav { display: flex; gap: 50px; }
+        nav a { color: #fff; text-decoration: none; font-size: 12px; letter-spacing: 2px; font-weight: 500; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.6; }
+        .page { display: none; min-height: 100vh; padding-top: 100px; }
+        .page.active { display: block; }
+        .home-hero { height: calc(100vh - 100px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 180px; gap: 5px; position: relative; }
+        .home-hero h1 { font-size: 140px; font-weight: 900; letter-spacing: -2px; }
+        .home-hero p { font-size: 14px; letter-spacing: 2px; opacity: 0.6; font-weight: 700; }
+        .social-icons { display: flex; gap: 25px; margin-top: 100px; position: absolute; bottom: 60px; }
+        .social-icons a { color: #fff; font-size: 18px; transition: all 0.3s; opacity: 0.7; }
+        .social-icons a:hover { opacity: 1; transform: scale(1.2); }
+        .page-content { max-width: 1000px; margin: 0 auto; padding: 80px 60px; }
+        .page-title { font-size: 36px; letter-spacing: 3px; margin-bottom: 60px; text-align: center; font-weight: 600; }
+        .about-main { max-width: 700px; margin: 0 auto 50px; text-align: center; }
+        .about-main h2 { font-size: 16px; font-weight: 500; letter-spacing: 0.5px; line-height: 1.9; margin-bottom: 35px; opacity: 0.95; }
+        .about-text { max-width: 700px; margin: 0 auto; line-height: 1.9; font-size: 13px; opacity: 0.75; text-align: left; }
+        .about-text p { margin-bottom: 18px; }
+        .projects-list { max-width: 800px; margin: 0 auto; }
+        .project-item { padding: 30px 0; border-bottom: 1px solid #222; }
+        .project-item:last-child { border-bottom: none; }
+        .project-year { font-size: 11px; opacity: 0.5; letter-spacing: 1px; margin-bottom: 8px; }
+        .project-title { font-size: 17px; font-weight: 500; letter-spacing: 0.3px; margin-bottom: 10px; }
+        .project-info { font-size: 11px; opacity: 0.55; letter-spacing: 0.3px; line-height: 1.6; }
+        .gallery-section { margin-bottom: 80px; }
+        .slider-container { position: relative; max-width: 800px; margin: 30px auto 0; touch-action: pan-y; }
+        .slider { overflow: hidden; border-radius: 2px; }
+        .slides { display: flex; transition: transform 0.4s ease; }
+        .slide { min-width: 100%; aspect-ratio: 3/2; }
+        .slide img { width: 100%; height: 100%; object-fit: contain; background: #0a0a0a; user-select: none; -webkit-user-drag: none; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.06); border: none; color: #fff; font-size: 18px; padding: 10px 14px; cursor: pointer; transition: background 0.3s; z-index: 10; }
+        .slider-btn:hover { background: rgba(255,255,255,0.12); }
+        .slider-btn.prev { left: 12px; }
+        .slider-btn.next { right: 12px; }
+        .slider-dots { text-align: center; margin-top: 18px; }
+        .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #333; margin: 0 5px; cursor: pointer; transition: background 0.3s; }
+        .dot.active { background: #999; }
+        .project-description { max-width: 800px; margin: 25px auto 0; padding: 25px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 2px; }
+        .project-meta { font-size: 11px; opacity: 0.6; margin-bottom: 18px; line-height: 1.8; }
+        .project-meta span { display: block; }
+        .project-description p { font-size: 12px; line-height: 1.8; opacity: 0.7; margin-bottom: 12px; }
+        .project-description p:last-child { margin-bottom: 0; }
+        .project-highlight { font-size: 11px; opacity: 0.5; margin-top: 15px; font-style: italic; }
+        .ticket-content { max-width: 600px; margin: 0 auto; }
+        .ticket-info { margin-bottom: 50px; padding: 40px; background: #0a0a0a; border: 1px solid #222; border-radius: 2px; }
+        .ticket-info h3 { font-size: 20px; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600; }
+        .ticket-info p { font-size: 13px; line-height: 1.8; opacity: 0.75; }
+        .ticket-btn { display: inline-block; width: 100%; padding: 14px; background: #fff; color: #000; text-decoration: none; letter-spacing: 1.5px; font-size: 13px; font-weight: 600; border-radius: 2px; transition: all 0.3s; border: none; cursor: pointer; }
+        .ticket-btn.disabled { background: #444; color: #999; cursor: not-allowed; opacity: 0.5; }
+        .coming-soon { text-align: center; padding: 40px; opacity: 0.5; font-size: 14px; letter-spacing: 2px; }
+        .contact-content { max-width: 500px; margin: 0 auto; text-align: center; }
+        .contact-icons { display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; }
+        .contact-icon { font-size: 32px; margin-bottom: 15px; opacity: 0.8; transition: all 0.3s; color: #fff; }
+        .contact-item a:hover .contact-icon { opacity: 1; transform: scale(1.1); }
+        .contact-divider { width: 40px; height: 1px; background: #333; margin: 50px auto; }
+        .contact-text { font-size: 13px; line-height: 2; opacity: 0.7; }
+        footer { padding: 40px; text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 2px; border-top: 1px solid #333; }
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            nav {
-                gap: 15px;
-            }
-
-            nav a {
-                font-size: 10px;
-                letter-spacing: 1px;
-            }
-
-            .logo {
-                height: 35px;
-            }
-
-            .logo img {
-                max-width: 120px;
-            }
-
-            .home-hero {
-                padding-top: 100px;
-                gap: 8px;
-            }
-
-            .home-hero h1 {
-                font-size: 60px;
-                letter-spacing: -1px;
-            }
-
-            .home-hero p {
-                font-size: 12px;
-                letter-spacing: 1.5px;
-            }
-
-            .social-icons {
-                gap: 20px;
-                bottom: 40px;
-            }
-
-            .social-icons a {
-                font-size: 16px;
-            }
-
-            .page-content {
-                padding: 60px 20px;
-            }
-
-            .page-title {
-                font-size: 28px;
-                letter-spacing: 2px;
-                margin-bottom: 50px;
-            }
-
-            .about-main h2 {
-                font-size: 16px;
-                line-height: 1.6;
-                margin-bottom: 30px;
-            }
-
-            .about-text {
-                font-size: 13px;
-                line-height: 1.7;
-                max-width: 100%;
-            }
-
-            .project-title {
-                font-size: 16px;
-                margin-bottom: 10px;
-            }
-
-            .project-info {
-                font-size: 11px;
-            }
-
-            .project-item {
-                padding: 25px 0;
-            }
-
-            .gallery-year {
-                font-size: 16px;
-                letter-spacing: 1.5px;
-                margin-bottom: 20px;
-            }
-
-            .slider-btn {
-                font-size: 18px;
-                padding: 10px 12px;
-            }
-
-            .dot {
-                width: 5px;
-                height: 5px;
-                margin: 0 4px;
-            }
-
-            .ticket-info {
-                padding: 25px;
-                margin-bottom: 30px;
-            }
-
-            .ticket-info h3 {
-                font-size: 16px;
-                margin-bottom: 15px;
-            }
-
-            .ticket-info p {
-                font-size: 12px;
-                line-height: 1.6;
-            }
-
-            .ticket-btn {
-                padding: 12px;
-                font-size: 12px;
-            }
-
-            .contact-icons {
-                gap: 25px;
-                margin-bottom: 40px;
-            }
-
-            .contact-icon {
-                font-size: 26px;
-                margin-bottom: 10px;
-            }
-
-            .contact-text {
-                font-size: 12px;
-                line-height: 1.8;
-            }
-
-            .contact-divider {
-                margin: 35px auto;
-            }
-
-            footer {
-                padding: 30px 20px;
-                font-size: 10px;
-            }
-        }
-
-        /* 모바일 초소형 (320px 이상) */
-        @media (max-width: 480px) {
-            header {
-                padding: 12px 15px;
-            }
-
-            nav {
-                gap: 10px;
-            }
-
-            nav a {
-                font-size: 9px;
-            }
-
-            .logo {
-                height: 30px;
-            }
-
-            .logo img {
-                max-width: 100px;
-            }
-
-            .home-hero {
-                padding-top: 80px;
-                gap: 6px;
-            }
-
-            .home-hero h1 {
-                font-size: 45px;
-                letter-spacing: -1px;
-            }
-
-            .home-hero p {
-                font-size: 11px;
-                letter-spacing: 1px;
-            }
-
-            .social-icons {
-                gap: 18px;
-                bottom: 30px;
-            }
-
-            .social-icons a {
-                font-size: 14px;
-            }
-
-            .page-content {
-                padding: 50px 15px;
-            }
-
-            .page-title {
-                font-size: 24px;
-                letter-spacing: 1.5px;
-                margin-bottom: 40px;
-            }
-
-            .about-main h2 {
-                font-size: 14px;
-                line-height: 1.5;
-                margin-bottom: 25px;
-            }
-
-            .about-text {
-                font-size: 12px;
-                line-height: 1.6;
-            }
-
-            .project-title {
-                font-size: 14px;
-            }
-
-            .project-info {
-                font-size: 10px;
-            }
-
-            .project-item {
-                padding: 20px 0;
-            }
-
-            .gallery-year {
-                font-size: 14px;
-                margin-bottom: 15px;
-            }
-
-            .slider-btn {
-                font-size: 16px;
-                padding: 8px 10px;
-                left: 8px;
-                right: 8px;
-            }
-
-            .ticket-info {
-                padding: 20px;
-            }
-
-            .ticket-info h3 {
-                font-size: 14px;
-            }
-
-            .ticket-info p {
-                font-size: 11px;
-            }
-
-            .contact-icons {
-                gap: 20px;
-            }
-
-            .contact-icon {
-                font-size: 24px;
-            }
-
-            footer {
-                padding: 25px 15px;
-                font-size: 9px;
-            }
+            header { padding: 15px 20px; }
+            nav { gap: 15px; }
+            nav a { font-size: 10px; }
+            .logo { height: 35px; }
+            .home-hero { padding-top: 100px; }
+            .home-hero h1 { font-size: 60px; }
+            .page-content { padding: 60px 20px; }
+            .page-title { font-size: 28px; }
+            .slider-btn { font-size: 16px; padding: 8px 12px; }
+            .project-description { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- 헤더 -->
     <header>
         <div class="logo" onclick="showPage('home')">
             <img src="https://lh3.googleusercontent.com/d/1F_94TKqnY_R5JDh1AFkEeEv3aO2Dl8mM=w400" alt="TRANS">
@@ -731,157 +96,149 @@
         </nav>
     </header>
 
-    <!-- HOME 페이지 -->
     <div id="home" class="page active">
         <div class="home-hero">
             <h1>TRANS</h1>
             <p>SERIES</p>
             <div class="social-icons">
-                <a href="https://www.instagram.com/trans_series" target="_blank" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/@transseries" target="_blank" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="mailto:trans0819@naver.com" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
+                <a href="https://www.instagram.com/trans_series" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@transseries" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="mailto:trans0819@naver.com"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </div>
 
-    <!-- ABOUT 페이지 -->
     <div id="about" class="page">
         <div class="page-content">
             <h1 class="page-title">ABOUT</h1>
             <div class="about-main">
-                <h2>TRANS = 變(변)<br>우리는 고정되기를 거부한다.<br>우리는 만남과 충돌을 상상한다.</h2>
+                <h2>TRANS = 變(변)<br>우리는 고정되기를 거부한다. 우리는 만남과 충돌을 상상한다.</h2>
             </div>
             <div class="about-text">
-                <p>TRANS는 '변(變)'의 뜻처럼, 고정되지 않고 느슨함에 이 움직임이며 확장하는 예술 프로젝트입니다. 다양한 예술 장르가 만나 서로를 변화시키며, 공동창작(co-creation)의 진짜 가능성을 탐구하고 있습니다.</p>
+                <p>TRANS는 '변(變)–'의 뜻처럼, 고정되지 않고 끊임없이 움직이며 확장하는 예술 프로젝트입니다. 다양한 예술 장르가 만나 서로를 변화시키며, 공동창작(co-creation)의 진짜 가능성을 탐구하고 있습니다.</p>
                 <p>단순한 협업을 넘어, 각자의 고유성이 충돌하고 교차하는 과정을 통해 '공존 가능한 예술 생태계'를 상상합니다. TRANS는 하나의 완성된 형태가 아닙니다. 과정 속에서 피어나는 질문, 실패, 충돌, 변화를 그대로 껴안으며 '어디로 튈지 모르는 가능성의 공간'을 확장해 나갑니다.</p>
             </div>
         </div>
     </div>
 
-    <!-- PROJECTS 페이지 -->
     <div id="projects" class="page">
         <div class="page-content">
             <h1 class="page-title">PROJECTS</h1>
             
-            <!-- 2023 Gallery -->
             <div class="gallery-section">
-                <h3 class="gallery-year">2023</h3>
                 <div class="projects-list">
                     <div class="project-item">
-                        <div class="project-title">"TRANS"</div>
-                        <div class="project-info">Studio Mong, Seoul · Oct 21–22, 2023</div>
+                        <div class="project-year">2023</div>
+                        <div class="project-title">TRANS</div>
                     </div>
                 </div>
                 <div class="slider-container">
-                    <div class="slider">
-                        <div class="slides" id="slides-2023"></div>
-                    </div>
+                    <div class="slider"><div class="slides" id="slides-2023"></div></div>
                     <button class="slider-btn prev" onclick="changeSlide('2023', -1)">‹</button>
                     <button class="slider-btn next" onclick="changeSlide('2023', 1)">›</button>
                     <div class="slider-dots" id="dots-2023"></div>
                 </div>
+                <div class="project-description">
+                    <div class="project-meta">
+                        <span>일자: 2023년 10월 21-22일</span>
+                        <span>장소: Studio Mong</span>
+                        <span>소요시간: 55분</span>
+                        <span>참여자: 오현택, 오명석, 이현석</span>
+                    </div>
+                    <p>변화하는 우리를 관찰하는 단계. 어떤 모습으로 우리가 변화하고 변신할지 확실하지 않지만, 우리가 변화하고 있는 상태를 인지하고 움직이는 몸과 소리에 집중합니다.</p>
+                    <p>시각으로 볼 수 있는 몸을 &lt;형체&gt;, 청각으로 들리는 소리를 &lt;음체&gt;로 정의합니다. 형체는 형체와, 형체는 음체와, 음체는 다시 형체와 마치 서로 소통하는 듯한 대화를 주고받으며, 청각적이고 시각적으로 모든 감각에 영향을 미치며 변화를 촉진합니다.</p>
+                    <p>이것은 마치 바이러스처럼 퍼지는 웃음과 같이 보입니다. 흥미롭게도 서로의 소통이 원활할 때도 있지만 오류가 발생하여 다른 방향이나 반대 방향으로 변화가 일어날 수도 있습니다. 그들은 어떤 형태로 변화하고 어느 방향으로 향하고 있을까요?</p>
+                    <p class="project-highlight">&lt;대화와 소통&gt; 각자만의 표현방법, 서로의 공통언어</p>
+                </div>
             </div>
 
-            <!-- 2024 Gallery -->
             <div class="gallery-section">
-                <h3 class="gallery-year">2024</h3>
                 <div class="projects-list">
                     <div class="project-item">
-                        <div class="project-title">"TRANS vol.2"</div>
-                        <div class="project-info">Mullae Arts Factory, Box Theatre, Seoul · Sep 29, 2024</div>
+                        <div class="project-year">2024</div>
+                        <div class="project-title">TRANS vol.2</div>
                     </div>
                 </div>
                 <div class="slider-container">
-                    <div class="slider">
-                        <div class="slides" id="slides-2024"></div>
-                    </div>
+                    <div class="slider"><div class="slides" id="slides-2024"></div></div>
                     <button class="slider-btn prev" onclick="changeSlide('2024', -1)">‹</button>
                     <button class="slider-btn next" onclick="changeSlide('2024', 1)">›</button>
                     <div class="slider-dots" id="dots-2024"></div>
                 </div>
+                <div class="project-description">
+                    <div class="project-meta">
+                        <span>일자: 2024년 9월 28-29일</span>
+                        <span>장소: 문래예술극장 박스시어터</span>
+                        <span>소요시간: 60분 (15분 pre-show)</span>
+                        <span>참여자: 이현석, 윤혜진, 조선재, 오현택, 김건우, 윤대원, 김지우</span>
+                    </div>
+                    <p>'사랑과 폭력은 매우 유사할 수 있지 않을까?'라는 질문을 대화의 시작으로 우리들의 관계, 대화의 모습과 방식, 이로 인해 충돌과 변화, 그리고 때로는 서로를 수용하는 우리들의 태도를 바라보는 것에서 출발합니다.</p>
+                    <p>트랜스 공연은 '사랑과 폭력'이라는 주제를 통해 대화와 관계에서 나타나는 복합적인 모습을 무대 위로 소환합니다.</p>
+                    <p>일상 대화를 바탕으로 개인의 의견 변화와 갈등을 탐구하며, 퍼포머의 몸(바디)을 중심으로 라이트, 사운드, 영상 등 다양한 매체를 활용하여 관객의 감각적 경험을 확장하고자 합니다. 관객은 무대 위 대화를 시각화한 퍼포밍을 통해 대화와 관계 속에서 어떻게 변화하는지를 보여주는 것이 바로 트랜스 작업이 추구하는 부분입니다.</p>
+                </div>
             </div>
 
-            <!-- 2025 Gallery -->
             <div class="gallery-section">
-                <h3 class="gallery-year">2025</h3>
                 <div class="projects-list">
                     <div class="project-item">
-                        <div class="project-title">"TRANS III: 주어 없는 움직임 / Gesture of the Lost Subject"</div>
-                        <div class="project-info">Mullae Arts Factory, Box Theatre, Seoul · Aug 5–6, 2025</div>
+                        <div class="project-year">2025</div>
+                        <div class="project-title">TRANS III: 주어 없는 움직임</div>
                     </div>
                 </div>
                 <div class="slider-container">
-                    <div class="slider">
-                        <div class="slides" id="slides-2025"></div>
-                    </div>
+                    <div class="slider"><div class="slides" id="slides-2025"></div></div>
                     <button class="slider-btn prev" onclick="changeSlide('2025', -1)">‹</button>
                     <button class="slider-btn next" onclick="changeSlide('2025', 1)">›</button>
                     <div class="slider-dots" id="dots-2025"></div>
                 </div>
+                <div class="project-description">
+                    <div class="project-meta">
+                        <span>일자: 2025년 8월 5-6일</span>
+                        <span>장소: 서강대학교 메리홀 대극장</span>
+                        <span>소요시간: 45분 (10분 pre-open)</span>
+                        <span>참여자: 오현택, 오명석 (김민우)</span>
+                    </div>
+                    <p>《TRANS III》는 개인의 리듬과 감각이 외부 구조와 어떻게 충돌하고 흔들리는지를 물리적으로 탐구하는 퍼포먼스다. "개별의 동일성"을 요구하는 현대 사회의 흐름 속에서, '효율'과 '표준화'라는 명분 아래 개인의 고유한 리듬과 선택이 얼마나 쉽게 동일화되는지를 바라본다.</p>
+                    <p>신체는 물리적인 작용을 통해 균형을 무너뜨리고, 다시 세우고, 반복하며 외부 조건에 반응하거나 무시하며 자신의 리듬을 지켜가려는 흔들림의 움직임을 이어간다. 동시에 사운드는 공간의 또 다른 층위를 구성해 눈에 보이지 않는 '두 번째 무대'를 만들어낸다.</p>
+                    <p>《TRANS III》는 관객에게 직접적으로 메시지를 전달하지 않고 다음과 같은 질문을 던진다.</p>
+                    <p class="project-highlight">"우리는 스스로 움직이고 있는가, 아니면 움직이게 되는가?"</p>
+                </div>
             </div>
 
-            <!-- 2026 Upcoming -->
-            <div class="projects-list" style="margin-top: 60px;">
+            <div class="projects-list" style="margin-top: 40px;">
                 <div class="project-item">
-                    <div class="project-title">"포옹 / Embrace"</div>
-                    <div class="project-info" style="opacity: 0.6;">SeMA West Seoul Museum of Art · 2026 (Upcoming)</div>
+                    <div class="project-year">2026</div>
+                    <div class="project-title">포옹 / Embrace</div>
+                    <div class="project-info">SeMA West Seoul Museum of Art · Upcoming</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- TICKET 페이지 -->
     <div id="ticket" class="page">
         <div class="page-content">
             <h1 class="page-title">TICKET</h1>
             <div class="ticket-content">
-                <div class="coming-soon">
-                    COMING SOON
-                </div>
+                <div class="coming-soon">COMING SOON</div>
                 <div class="ticket-info" style="opacity: 0.5;">
                     <h3>TRANS III: 주어 없는 움직임</h3>
-                    <p>
-                        2025년 8월 5일 - 8월 6일<br>
-                        문래예술공장 박스시어터, 서울<br><br>
-                        티켓 예매는 추후 공지됩니다.
-                    </p>
+                    <p>2025년 8월 5일 - 8월 6일<br>서강대학교 메리홀 대극장<br><br>티켓 예매는 추후 공지됩니다.</p>
                 </div>
                 <button class="ticket-btn disabled">예매하기</button>
             </div>
         </div>
     </div>
 
-    <!-- CONTACT 페이지 -->
     <div id="contact" class="page">
         <div class="page-content">
             <h1 class="page-title">CONTACT</h1>
             <div class="contact-content">
                 <div class="contact-icons">
-                    <a href="mailto:trans0819@naver.com" class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                    </a>
-                    <a href="https://www.instagram.com/trans_series" target="_blank" class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                    </a>
-                    <a href="https://www.youtube.com/@transseries" target="_blank" class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-youtube"></i>
-                        </div>
-                    </a>
+                    <a href="mailto:trans0819@naver.com" class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div></a>
+                    <a href="https://www.instagram.com/trans_series" target="_blank" class="contact-item"><div class="contact-icon"><i class="fab fa-instagram"></i></div></a>
+                    <a href="https://www.youtube.com/@transseries" target="_blank" class="contact-item"><div class="contact-icon"><i class="fab fa-youtube"></i></div></a>
                 </div>
-                
                 <div class="contact-divider"></div>
-                
                 <div class="contact-text">
                     <p>공연 문의 및 협업 제안</p>
                     <p style="margin-top: 15px;">trans0819@naver.com</p>
@@ -890,138 +247,75 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 TRANS. ALL RIGHTS RESERVED.</p>
-    </footer>
+    <footer><p>© 2025 TRANS. ALL RIGHTS RESERVED.</p></footer>
 
     <script>
-        // 이미지 데이터
         const images = {
-            '2023': [
-                '1A6OYBqS6dh-zixzP5P3gNNESJNvQkhwD', '1v4yWOcdDdzpBelwkDlSdZljjj4TBvKWa',
-                '1Fkb0DjnWlliJkO-yNi82CLbFrJsCrnB5', '1FqqYWbcCBWCbrJmLoskQWJmBKF3mWXw2',
-                '1kNZawehpgYM04EeUh6enaJn0DRYXpADZ', '1gL2bWHyu5Mb1qs2-j9JJihk9ugDZ2Feh',
-                '1D4ql49weDALXXD6t_mPm3MIkGAjj7she', '1IbV9uQi_QCrmQajH4dplBmj1wZA8B5uw',
-                '1UjjOzHIrM0T3Z0fDH5_S2rLhx02uYCvE', '1WjNG3al6ski5SO9CUeXGuo4R3wabYLEA',
-                '1eHEBjPFHk53bVOofcpx_74jEi1fgsqPZ'
-            ],
-            '2024': [
-                '1b2b0193SPKSjowd4bzgUG181aJAkZMgV', '1d-4RFdUMHrToQB4wSDusp-5DDjibk_XE',
-                '1KZV5ZYlnP5yHZRNd2d0Uk5bNtnTJtehf', '1DnRcrdCethVq4XlStVayoPI3NWLGxrv3',
-                '1g3owEbMmqoKOEqgovhfHFgWHynHl10fD', '1IuQls4deH68za6UGpj7YD2KxMWuQFt3X',
-                '1O2zIp4V5igJGwfhMlk8bPA84wwJUBTS5', '1SuuPoDIH0957T-M6o_yCXxAwBGLRJaVc',
-                '1GIMcg8xLbsjm6gbg6yQ-Ty8qQdeo7q6T', '1eJEaTVuwcIeqvx2v4lvn7tbqDYCuO5oA'
-            ],
-            '2025': [
-                '1SExUhJi5j9xB8B2fAjvjCPdIE9HcGcAQ', '1J6K57vgL64EucawpJnzGdgm3iv5VH1b9', 
-                '1-ZFsQIpb0Vye7HG57i8pfjQmdIVELU-8', '1YYOeTRwycu-5B9gKL8iKwe9m6Ts_M9oX',
-                '1EWcIXXNvhOfz44C9MxOv0oOHWuybNLGS', '1v1cBL4ezqcrcVs8JSptgFrJPHZDgBA9a', 
-                '1gTL6LtKrl5yjdKV9Njk7_s3FbuKcGz9P', '1f0SNXBAdSbvW_U0WIVb94Ks3tsJGYPr7', 
-                '1rgMAosKzYg_XXlUHoHN-faQqAQyquron', '137GHjXfJbbAJDqQMYv0sMNSOi7sKticE'
-                
-                           
-                
-            
-            ]
+            '2023': ['1A6OYBqS6dh-zixzP5P3gNNESJNvQkhwD', '1v4yWOcdDdzpBelwkDlSdZljjj4TBvKWa', '1Fkb0DjnWlliJkO-yNi82CLbFrJsCrnB5', '1FqqYWbcCBWCbrJmLoskQWJmBKF3mWXw2', '1kNZawehpgYM04EeUh6enaJn0DRYXpADZ', '1gL2bWHyu5Mb1qs2-j9JJihk9ugDZ2Feh', '1D4ql49weDALXXD6t_mPm3MIkGAjj7she', '1IbV9uQi_QCrmQajH4dplBmj1wZA8B5uw', '1UjjOzHIrM0T3Z0fDH5_S2rLhx02uYCvE', '1WjNG3al6ski5SO9CUeXGuo4R3wabYLEA', '1eHEBjPFHk53bVOofcpx_74jEi1fgsqPZ'],
+            '2024': ['1b2b0193SPKSjowd4bzgUG181aJAkZMgV', '1d-4RFdUMHrToQB4wSDusp-5DDjibk_XE', '1KZV5ZYlnP5yHZRNd2d0Uk5bNtnTJtehf', '1DnRcrdCethVq4XlStVayoPI3NWLGxrv3', '1g3owEbMmqoKOEqgovhfHFgWHynHl10fD', '1IuQls4deH68za6UGpj7YD2KxMWuQFt3X', '1O2zIp4V5igJGwfhMlk8bPA84wwJUBTS5', '1SuuPoDIH0957T-M6o_yCXxAwBGLRJaVc', '1GIMcg8xLbsjm6gbg6yQ-Ty8qQdeo7q6T', '1eJEaTVuwcIeqvx2v4lvn7tbqDYCuO5oA'],
+            '2025': ['1SExUhJi5j9xB8B2fAjvjCPdIE9HcGcAQ', '1J6K57vgL64EucawpJnzGdgm3iv5VH1b9', '1-ZFsQIpb0Vye7HG57i8pfjQmdIVELU-8', '1YYOeTRwycu-5B9gKL8iKwe9m6Ts_M9oX', '1EWcIXXNvhOfz44C9MxOv0oOHWuybNLGS', '1v1cBL4ezqcrcVs8JSptgFrJPHZDgBA9a', '1gTL6LtKrl5yjdKV9Njk7_s3FbuKcGz9P', '1f0SNXBAdSbvW_U0WIVb94Ks3tsJGYPr7', '1rgMAosKzYg_XXlUHoHN-faQqAQyquron', '137GHjXfJbbAJDqQMYv0sMNSOi7sKticE']
         };
-
         let currentSlide = { '2023': 0, '2024': 0, '2025': 0 };
+        let touchStartX = 0, touchEndX = 0;
 
-        // 슬라이더 초기화
         function initSlider(year) {
-            const slidesContainer = document.getElementById(`slides-${year}`);
-            const dotsContainer = document.getElementById(`dots-${year}`);
-            
-            images[year].forEach((id, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'slide';
-                slide.innerHTML = `<img src="https://drive.google.com/thumbnail?id=${id}&sz=w1200" alt="${year} ${index + 1}">`;
-                slidesContainer.appendChild(slide);
-                
-                const dot = document.createElement('span');
-                dot.className = `dot ${index === 0 ? 'active' : ''}`;
-                dot.onclick = () => goToSlide(year, index);
-                dotsContainer.appendChild(dot);
+            const sc = document.getElementById(`slides-${year}`), dc = document.getElementById(`dots-${year}`);
+            images[year].forEach((id, i) => {
+                const s = document.createElement('div');
+                s.className = 'slide';
+                s.innerHTML = `<img src="https://drive.google.com/thumbnail?id=${id}&sz=w1200" alt="${year} ${i + 1}">`;
+                sc.appendChild(s);
+                const d = document.createElement('span');
+                d.className = `dot ${i === 0 ? 'active' : ''}`;
+                d.onclick = () => goToSlide(year, i);
+                dc.appendChild(d);
             });
+            const sliderEl = sc.parentElement;
+            sliderEl.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, { passive: true });
+            sliderEl.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) changeSlide(year, diff > 0 ? 1 : -1);
+            }, { passive: true });
         }
 
-        // 슬라이드 변경
-        function changeSlide(year, direction) {
-            const slides = document.getElementById(`slides-${year}`);
-            const totalSlides = images[year].length;
-            
-            currentSlide[year] += direction;
-            
-            if (currentSlide[year] < 0) currentSlide[year] = totalSlides - 1;
-            if (currentSlide[year] >= totalSlides) currentSlide[year] = 0;
-            
+        function changeSlide(year, dir) {
+            const total = images[year].length;
+            currentSlide[year] += dir;
+            if (currentSlide[year] < 0) currentSlide[year] = total - 1;
+            if (currentSlide[year] >= total) currentSlide[year] = 0;
             updateSlider(year);
         }
 
-        // 특정 슬라이드로 이동
-        function goToSlide(year, index) {
-            currentSlide[year] = index;
+        function goToSlide(year, i) {
+            currentSlide[year] = i;
             updateSlider(year);
         }
 
-        // 슬라이더 업데이트
         function updateSlider(year) {
             const slides = document.getElementById(`slides-${year}`);
             const dots = document.querySelectorAll(`#dots-${year} .dot`);
-            
             slides.style.transform = `translateX(-${currentSlide[year] * 100}%)`;
-            
-            dots.forEach((dot, index) => {
-                dot.className = index === currentSlide[year] ? 'dot active' : 'dot';
-            });
+            dots.forEach((d, i) => d.className = i === currentSlide[year] ? 'dot active' : 'dot');
         }
 
-        // 페이지 전환
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
             window.scrollTo(0, 0);
-            
-            // URL 히스토리 업데이트
-            window.history.pushState({ page: pageId }, '', `#${pageId}`);
+            window.history.pushState({ page: id }, '', `#${id}`);
         }
 
-        // 페이지 로드시 URL에서 페이지 복원
         window.addEventListener('load', () => {
             const hash = window.location.hash.substring(1);
-            if (hash && document.getElementById(hash)) {
-                showPage(hash);
-            }
+            if (hash && document.getElementById(hash)) showPage(hash);
         });
 
-        // 초기화
         initSlider('2023');
         initSlider('2024');
         initSlider('2025');
 
-        // 이미지 보호 - 우클릭 방지
-        document.addEventListener('contextmenu', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        });
-
-        // 이미지 드래그 방지
-        document.addEventListener('dragstart', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        });
-
-        // 개발자 도구에서 이미지 저장 방지
-        document.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
-                e.preventDefault();
-            }
-        });
+        document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+        document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
     </script>
 </body>
-</html>
