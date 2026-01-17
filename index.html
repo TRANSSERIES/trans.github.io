@@ -8,13 +8,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
-        header { position: fixed; top: 0; width: 100%; padding: 25px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(0,0,0,0.98); border-bottom: 1px solid #222; }
-        .logo { height: 45px; cursor: pointer; transition: opacity 0.3s; }
-        .logo img { height: 100%; width: auto; max-width: 200px; }
+        header { position: fixed; top: 0; width: 100%; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(0,0,0,0.98); border-bottom: 1px solid #222; }
+        .logo { height: 50px; cursor: pointer; transition: opacity 0.3s; }
+        .logo img { height: 100%; width: auto; max-width: 250px; }
         .logo:hover { opacity: 0.7; }
         nav { display: flex; gap: 50px; }
         nav a { color: #fff; text-decoration: none; font-size: 12px; letter-spacing: 2px; font-weight: 500; transition: opacity 0.3s; }
         nav a:hover { opacity: 0.6; }
+        .menu-button { display: none; font-size: 24px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s; }
+        .menu-button:hover { opacity: 1; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.98); z-index: 2000; padding: 80px 40px; }
+        .mobile-menu.active { display: flex; flex-direction: column; gap: 30px; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 24px; letter-spacing: 2px; opacity: 0.8; transition: opacity 0.3s; }
+        .mobile-menu a:hover { opacity: 1; }
+        .close-menu { position: absolute; top: 30px; right: 40px; font-size: 32px; cursor: pointer; opacity: 0.8; }
+        .close-menu:hover { opacity: 1; }
         .page { display: none; min-height: 100vh; padding-top: 100px; }
         .page.active { display: block; }
         .home-hero { height: calc(100vh - 100px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 180px; gap: 5px; position: relative; }
@@ -76,10 +84,12 @@
         footer { padding: 40px; text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 2px; border-top: 1px solid #333; }
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
+            .menu-button { display: block; }
             nav { gap: 20px; }
             nav a { font-size: 11px; letter-spacing: 1.5px; }
-            .logo { height: 30px; }
-            .logo img { max-width: 140px; }
+            nav a:not(.show-mobile) { display: none; }
+            .logo { height: 38px; }
+            .logo img { max-width: 160px; }
             .home-hero { padding-top: 100px; }
             .home-hero h1 { font-size: 60px; }
             .page-content { padding: 60px 20px; }
@@ -91,6 +101,9 @@
 </head>
 <body>
     <header>
+        <div class="menu-button" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
         <div class="logo" onclick="showPage('home')">
             <img src="https://lh3.googleusercontent.com/d/1F_94TKqnY_R5JDh1AFkEeEv3aO2Dl8mM=w400" alt="TRANS">
         </div>
@@ -98,10 +111,19 @@
             <a href="#" onclick="showPage('home'); return false;">HOME</a>
             <a href="#" onclick="showPage('about'); return false;">ABOUT</a>
             <a href="#" onclick="showPage('projects'); return false;">PROJECTS</a>
-            <a href="#" onclick="showPage('ticket'); return false;">TICKET</a>
-            <a href="#" onclick="showPage('contact'); return false;">CONTACT</a>
+            <a href="#" onclick="showPage('ticket'); return false;" class="show-mobile">TICKET</a>
+            <a href="#" onclick="showPage('contact'); return false;" class="show-mobile">CONTACT</a>
         </nav>
     </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMenu()">✕</div>
+        <a href="#" onclick="showPage('home'); toggleMenu(); return false;">HOME</a>
+        <a href="#" onclick="showPage('about'); toggleMenu(); return false;">ABOUT</a>
+        <a href="#" onclick="showPage('projects'); toggleMenu(); return false;">PROJECTS</a>
+        <a href="#" onclick="showPage('ticket'); toggleMenu(); return false;">TICKET</a>
+        <a href="#" onclick="showPage('contact'); toggleMenu(); return false;">CONTACT</a>
+    </div>
 
     <div id="home" class="page active">
         <div class="home-hero">
@@ -357,6 +379,11 @@
                 document.querySelector('.project-tab:last-child').classList.add('active');
                 document.getElementById('archive-section').classList.add('active');
             }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
         }
 
         document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
