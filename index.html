@@ -23,10 +23,26 @@
         .mobile-menu a:hover { opacity: 1; }
         .close-menu { position: absolute; top: 30px; right: 40px; font-size: 32px; cursor: pointer; opacity: 0.8; }
         .close-menu:hover { opacity: 1; }
-        .page { display: none; min-height: 100vh; padding-top: 100px; }
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 100px;
+            animation: fadeIn 0.5s ease;
+        }
         .page.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .home-hero { height: calc(100vh - 100px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 180px; gap: 5px; position: relative; }
-        .home-hero h1 { font-size: 140px; font-weight: 900; letter-spacing: -2px; }
+        .home-hero h1 {
+            font-size: 140px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .home-hero h1:hover { opacity: 0.7; }
         .home-hero p { font-size: 14px; letter-spacing: 2px; opacity: 0.6; font-weight: 700; }
         .social-icons { display: flex; gap: 25px; margin-top: 100px; position: absolute; bottom: 60px; }
         .social-icons a { color: #fff; font-size: 18px; transition: all 0.3s; opacity: 0.7; }
@@ -85,11 +101,10 @@
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
             .menu-button { display: block; }
+            .logo { display: none; }
             nav { gap: 20px; }
             nav a { font-size: 11px; letter-spacing: 1.5px; }
             nav a:not(.show-mobile) { display: none; }
-            .logo { height: 38px; }
-            .logo img { max-width: 160px; }
             .home-hero { padding-top: 100px; }
             .home-hero h1 { font-size: 60px; }
             .page-content { padding: 60px 20px; }
@@ -110,8 +125,8 @@
         <nav>
             <a href="#" onclick="showPage('home'); return false;">HOME</a>
             <a href="#" onclick="showPage('about'); return false;">ABOUT</a>
-            <a href="#" onclick="showPage('projects'); return false;">PROJECTS</a>
-            <a href="#" onclick="showPage('ticket'); return false;" class="show-mobile">TICKET</a>
+            <a href="#" onclick="showPage('projects'); return false;" class="show-mobile">PROJECTS</a>
+            <a href="#" onclick="showPage('ticket'); return false;">TICKET</a>
             <a href="#" onclick="showPage('contact'); return false;" class="show-mobile">CONTACT</a>
         </nav>
     </header>
@@ -127,7 +142,7 @@
 
     <div id="home" class="page active">
         <div class="home-hero">
-            <h1>TRANS</h1>
+            <h1 onclick="showPage('projects')">TRANS</h1>
             <p>SERIES</p>
             <div class="social-icons">
                 <a href="https://www.instagram.com/trans_series" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -354,8 +369,10 @@
 
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            window.scrollTo(0, 0);
+            setTimeout(() => {
+                document.getElementById(id).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 50);
             window.history.pushState({ page: id }, '', `#${id}`);
         }
 
