@@ -96,7 +96,13 @@
         .project-title { font-size: 17px; font-weight: 500; letter-spacing: 0.3px; margin-bottom: 10px; }
         .project-info { font-size: 11px; opacity: 0.55; letter-spacing: 0.3px; line-height: 1.6; }
         .gallery-section { margin-bottom: 80px; }
-        .slider-container { position: relative; max-width: 800px; margin: 15px auto 0; touch-action: pan-y; }
+        .slider-container {
+            position: relative;
+            max-width: 800px;
+            margin: 15px auto 0;
+            touch-action: pan-y;
+            pointer-events: auto;
+        }
         .slider { overflow: hidden; border-radius: 2px; }
         .slides { display: flex; transition: transform 0.4s ease; }
         .slide { min-width: 100%; aspect-ratio: 3/2; }
@@ -109,8 +115,8 @@
             -webkit-user-select: none;
             -webkit-user-drag: none;
             -webkit-touch-callout: none;
-            pointer-events: none;
         }
+        .slider-btn { pointer-events: auto; }
         .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.06); border: none; color: #fff; font-size: 18px; padding: 10px 14px; cursor: pointer; transition: background 0.3s; z-index: 10; }
         .slider-btn:hover { background: rgba(255,255,255,0.12); }
         .slider-btn.prev { left: 12px; }
