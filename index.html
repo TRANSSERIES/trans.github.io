@@ -23,395 +23,69 @@
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --accent: #fff;
-            --bg-dark: #000;
-            --bg-card: #0a0a0a;
-            --border: #1a1a1a;
-            --text-primary: #fff;
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-tertiary: rgba(255, 255, 255, 0.5);
-            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* ===== HEADER ===== */
-        header { 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            padding: 20px 60px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.95);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-            transition: all var(--transition);
-        }
-
-        header:hover {
-            border-bottom-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .logo { 
-            height: 50px; 
-            cursor: pointer; 
-            transition: all var(--transition);
-            filter: brightness(1);
-        }
-
-        .logo img { 
-            height: 100%; 
-            width: auto; 
-            max-width: 250px;
-        }
-
-        .logo:hover { 
-            filter: brightness(0.85);
-            transform: scale(0.98);
-        }
-
-        nav { 
-            display: flex; 
-            gap: 50px;
-        }
-
-        nav a { 
-            color: var(--text-primary);
-            text-decoration: none; 
-            font-size: 12px; 
-            letter-spacing: 2px; 
-            font-weight: 500;
-            transition: all var(--transition);
-            position: relative;
-            opacity: 0.8;
-        }
-
-        nav a:hover { 
-            opacity: 1;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: width var(--transition);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .menu-button { 
-            display: none; 
-            font-size: 24px; 
-            cursor: pointer; 
-            opacity: 0.8;
-            transition: all var(--transition);
-        }
-
-        .menu-button:hover { 
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .mobile-menu { 
-            display: none; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100vh; 
-            background: rgba(0, 0, 0, 0.98);
-            z-index: 2000; 
-            padding: 80px 40px;
-            backdrop-filter: blur(10px);
-        }
-
-        .mobile-menu.active { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 30px;
-            animation: slideInMenu 0.4s ease;
-        }
-
-        @keyframes slideInMenu {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .mobile-menu a { 
-            color: var(--text-primary);
-            text-decoration: none; 
-            font-size: 24px; 
-            letter-spacing: 2px; 
-            opacity: 0.8; 
-            transition: all var(--transition);
-        }
-
-        .mobile-menu a:hover { 
-            opacity: 1;
-            transform: translateX(10px);
-        }
-
-        .close-menu { 
-            position: absolute; 
-            top: 30px; 
-            right: 40px; 
-            font-size: 32px; 
-            cursor: pointer; 
-            opacity: 0.8;
-            transition: all var(--transition);
-        }
-
-        .close-menu:hover { 
-            opacity: 1;
-            transform: rotate(90deg);
-        }
-
-        /* ===== PAGES ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+        header { position: fixed; top: 0; width: 100%; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(0,0,0,0.98); border-bottom: 1px solid #222; }
+        .logo { height: 50px; cursor: pointer; transition: opacity 0.3s; }
+        .logo img { height: 100%; width: auto; max-width: 250px; }
+        .logo:hover { opacity: 0.7; }
+        nav { display: flex; gap: 50px; }
+        nav a { color: #fff; text-decoration: none; font-size: 12px; letter-spacing: 2px; font-weight: 500; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.6; }
+        .menu-button { display: none; font-size: 24px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s; }
+        .menu-button:hover { opacity: 1; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.98); z-index: 2000; padding: 80px 40px; }
+        .mobile-menu.active { display: flex; flex-direction: column; gap: 30px; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 24px; letter-spacing: 2px; opacity: 0.8; transition: opacity 0.3s; }
+        .mobile-menu a:hover { opacity: 1; }
+        .close-menu { position: absolute; top: 30px; right: 40px; font-size: 32px; cursor: pointer; opacity: 0.8; }
+        .close-menu:hover { opacity: 1; }
         .page {
             display: none;
             min-height: 100vh;
             padding-top: 100px;
-            animation: fadeInPage 0.6s var(--transition);
+            animation: fadeIn 0.5s ease;
         }
-
-        .page.active { 
-            display: block; 
+        .page.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        @keyframes fadeInPage {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
-        /* ===== HOME HERO ===== */
-        .home-hero { 
-            height: calc(100vh - 100px); 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: flex-start; 
-            padding-top: 180px; 
-            gap: 5px; 
-            position: relative;
-        }
-
+        .home-hero { height: calc(100vh - 100px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 180px; gap: 5px; position: relative; }
         .home-hero h1 {
             font-size: 140px;
             font-weight: 900;
             letter-spacing: -8px;
             cursor: pointer;
-            transition: all var(--transition);
-            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            transform: perspective(1000px) rotateX(0deg);
+            transition: opacity 0.3s;
         }
-
-        .home-hero h1:hover { 
-            opacity: 0.85;
-            transform: perspective(1000px) rotateX(-5deg) translateZ(20px);
-            filter: drop-shadow(0 20px 40px rgba(255, 255, 255, 0.1));
-        }
-
-        .home-hero p { 
-            font-size: 14px; 
-            letter-spacing: 2px; 
-            opacity: 0.6; 
-            font-weight: 700;
-            transition: all var(--transition);
-        }
-
-        .home-hero:hover p {
-            opacity: 0.8;
-            letter-spacing: 3px;
-        }
-
+        .home-hero h1:hover { opacity: 0.7; }
+        .home-hero p { font-size: 14px; letter-spacing: 2px; opacity: 0.6; font-weight: 700; }
         @media (min-width: 769px) {
-            .home-hero h1 { 
-                letter-spacing: -15px; 
-            }
+            .home-hero h1 { letter-spacing: -15px; }
         }
-
-        .social-icons { 
-            display: flex; 
-            gap: 25px; 
-            margin-top: 100px; 
-            position: absolute; 
-            bottom: 60px;
-        }
-
-        .social-icons a { 
-            color: var(--text-primary);
-            font-size: 18px; 
-            transition: all var(--transition);
-            opacity: 0.7;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-        }
-
-        .social-icons a:hover { 
-            opacity: 1; 
-            transform: scale(1.2) translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        /* ===== PAGE CONTENT ===== */
-        .page-content { 
-            max-width: 1000px; 
-            margin: 0 auto; 
-            padding: 80px 60px;
-        }
-
-        .page-title { 
-            font-size: 48px;
-            letter-spacing: 3px; 
-            margin-bottom: 60px; 
-            text-align: center; 
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.9) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        /* ===== ABOUT ===== */
-        .about-main { 
-            max-width: 700px; 
-            margin: 0 auto 50px; 
-            text-align: center;
-        }
-
-        .about-main h2 { 
-            font-size: 18px; 
-            font-weight: 400; 
-            letter-spacing: 0.5px; 
-            line-height: 1.9; 
-            margin-bottom: 35px; 
-            opacity: 0.95;
-            color: var(--text-secondary);
-        }
-
-        .about-text { 
-            max-width: 700px; 
-            margin: 0 auto; 
-            line-height: 2; 
-            font-size: 14px; 
-            opacity: 0.75; 
-            text-align: left;
-            color: var(--text-secondary);
-        }
-
-        .about-text p { 
-            margin-bottom: 20px;
-            transition: all var(--transition);
-        }
-
-        .about-text p:hover {
-            opacity: 1;
-            color: var(--text-primary);
-        }
-
-        /* ===== PROJECTS ===== */
-        .projects-list { 
-            max-width: 800px; 
-            margin: 0 auto;
-        }
-
-        .project-tabs { 
-            display: flex; 
-            justify-content: center; 
-            gap: 40px; 
-            margin-bottom: 50px; 
-            border-bottom: 1px solid var(--border);
-        }
-
-        .project-tab { 
-            padding: 15px 0; 
-            font-size: 14px; 
-            letter-spacing: 1.5px; 
-            cursor: pointer; 
-            opacity: 0.5; 
-            transition: all var(--transition);
-            border-bottom: 3px solid transparent;
-            font-weight: 500;
-        }
-
-        .project-tab.active { 
-            opacity: 1; 
-            border-bottom-color: var(--accent);
-        }
-
-        .project-tab:hover { 
-            opacity: 0.8;
-        }
-
-        .project-section { 
-            display: none;
-            animation: fadeInPage 0.6s var(--transition);
-        }
-
-        .project-section.active { 
-            display: block;
-        }
-
+        .social-icons { display: flex; gap: 25px; margin-top: 100px; position: absolute; bottom: 60px; }
+        .social-icons a { color: #fff; font-size: 18px; transition: all 0.3s; opacity: 0.7; }
+        .social-icons a:hover { opacity: 1; transform: scale(1.2); }
+        .page-content { max-width: 1000px; margin: 0 auto; padding: 80px 60px; }
+        .page-title { font-size: 36px; letter-spacing: 3px; margin-bottom: 60px; text-align: center; font-weight: 600; }
+        .about-main { max-width: 700px; margin: 0 auto 50px; text-align: center; }
+        .about-main h2 { font-size: 16px; font-weight: 500; letter-spacing: 0.5px; line-height: 1.9; margin-bottom: 35px; opacity: 0.95; }
+        .about-text { max-width: 700px; margin: 0 auto; line-height: 1.9; font-size: 13px; opacity: 0.75; text-align: left; }
+        .about-text p { margin-bottom: 18px; }
+        .projects-list { max-width: 800px; margin: 0 auto; }
+        .project-tabs { display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; border-bottom: 1px solid #222; }
+        .project-tab { padding: 15px 0; font-size: 14px; letter-spacing: 1.5px; cursor: pointer; opacity: 0.5; transition: opacity 0.3s; border-bottom: 2px solid transparent; }
+        .project-tab.active { opacity: 1; border-bottom-color: #fff; }
+        .project-tab:hover { opacity: 0.8; }
+        .project-section { display: none; }
+        .project-section.active { display: block; }
         .project-item {
             padding: 30px 0;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #222;
             position: relative;
-            transition: all var(--transition);
         }
-
-        .project-item:hover {
-            border-bottom-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .project-item:last-child { 
-            border-bottom: none;
-        }
-
+        .project-item:last-child { border-bottom: none; }
         .project-status {
             position: absolute;
             right: 0;
@@ -419,463 +93,87 @@
             font-size: 12px;
             font-weight: 600;
             letter-spacing: 1px;
-            transition: all var(--transition);
         }
-
-        .sold-out { 
-            color: #ff3333;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
-        }
-
+        .sold-out { color: #ff3333; }
         .buy-link {
-            color: var(--text-primary);
+            color: #fff;
             text-decoration: none;
             padding: 8px 20px;
-            border: 1px solid var(--accent);
+            border: 1px solid #fff;
             border-radius: 2px;
-            transition: all var(--transition);
+            transition: all 0.3s;
             font-size: 11px;
             letter-spacing: 1px;
-            font-weight: 600;
-            display: inline-block;
         }
-
         .buy-link:hover {
-            background: var(--accent);
-            color: var(--bg-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            background: #fff;
+            color: #000;
         }
-
-        .project-year { 
-            font-size: 11px; 
-            opacity: 0.5; 
-            letter-spacing: 1px; 
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .project-title { 
-            font-size: 18px; 
-            font-weight: 600; 
-            letter-spacing: 0.3px; 
-            margin-bottom: 10px;
-            transition: all var(--transition);
-        }
-
-        .project-item:hover .project-title {
-            color: rgba(255, 255, 255, 0.95);
-        }
-
-        .project-info { 
-            font-size: 12px; 
-            opacity: 0.55; 
-            letter-spacing: 0.3px; 
-            line-height: 1.6;
-        }
-
-        /* ===== GALLERY / SLIDER ===== */
-        .gallery-section { 
-            margin-bottom: 80px;
-        }
-
+        .project-year { font-size: 11px; opacity: 0.5; letter-spacing: 1px; margin-bottom: 8px; }
+        .project-title { font-size: 17px; font-weight: 500; letter-spacing: 0.3px; margin-bottom: 10px; }
+        .project-info { font-size: 11px; opacity: 0.55; letter-spacing: 0.3px; line-height: 1.6; }
+        .gallery-section { margin-bottom: 80px; }
         .slider-container {
             position: relative;
             max-width: 800px;
             margin: 15px auto 0;
             touch-action: pan-y;
             pointer-events: auto;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            background: var(--bg-card);
         }
-
-        .slider-container:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .slider { 
-            overflow: hidden; 
-            border-radius: 3px;
-            position: relative;
-        }
-
-        .slides { 
-            display: flex; 
-            transition: transform 0.5s cubic-bezier(0.35, 0, 0.25, 1);
-        }
-
-        .slide { 
-            min-width: 100%; 
-            aspect-ratio: 3/2;
-        }
-
+        .slider { overflow: hidden; border-radius: 2px; }
+        .slides { display: flex; transition: transform 0.4s ease; }
+        .slide { min-width: 100%; aspect-ratio: 3/2; }
         .slide img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            background: var(--bg-card);
+            background: #0a0a0a;
             user-select: none;
             -webkit-user-select: none;
             -webkit-user-drag: none;
             -webkit-touch-callout: none;
-            transition: transform 0.4s var(--transition);
         }
-
-        .slide:has(> img:hover) img {
-            transform: scale(1.02);
-        }
-
-        .slider-btn { 
-            position: absolute; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: var(--text-primary);
-            font-size: 18px; 
-            padding: 12px 16px; 
-            cursor: pointer; 
-            transition: all var(--transition);
-            z-index: 10;
-            font-weight: 600;
-            pointer-events: auto;
-        }
-
-        .slider-btn:hover { 
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .slider-btn.prev { 
-            left: 12px;
-        }
-
-        .slider-btn.next { 
-            right: 12px;
-        }
-
-        .slider-dots { 
-            text-align: center; 
-            margin-top: 18px;
-            padding: 12px 0;
-        }
-
-        .dot { 
-            display: inline-block; 
-            width: 6px; 
-            height: 6px; 
-            border-radius: 50%; 
-            background: var(--border);
-            margin: 0 6px; 
-            cursor: pointer; 
-            transition: all var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dot.active { 
-            background: var(--accent);
-            width: 20px;
-            border-radius: 3px;
-            border: 1px solid var(--accent);
-        }
-
-        .dot:hover {
-            background: rgba(255, 255, 255, 0.6);
-        }
-
-        .project-description { 
-            max-width: 800px; 
-            margin: 20px auto 0;
-            padding: 0;
-            background: transparent;
-            border: none;
-            border-radius: 0;
-        }
-
-        .project-meta { 
-            font-size: 12px; 
-            opacity: 0.65; 
-            margin-bottom: 18px; 
-            line-height: 1.8; 
-            padding: 20px; 
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            transition: all var(--transition);
-        }
-
-        .project-meta:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .project-meta span { 
-            display: block;
-            transition: all var(--transition);
-        }
-
-        .project-description p { 
-            font-size: 13px; 
-            line-height: 1.9; 
-            opacity: 0.7; 
-            margin-bottom: 14px;
-            color: var(--text-secondary);
-            transition: all var(--transition);
-        }
-
-        .project-description p:hover {
-            opacity: 0.9;
-            color: var(--text-primary);
-        }
-
-        .project-description p:last-child { 
-            margin-bottom: 0;
-        }
-
-        .project-highlight { 
-            font-size: 12px; 
-            opacity: 0.6; 
-            margin-top: 18px; 
-            font-style: italic;
-            border-left: 2px solid rgba(255, 255, 255, 0.2);
-            padding-left: 12px;
-            transition: all var(--transition);
-        }
-
-        .project-highlight:hover {
-            border-left-color: rgba(255, 255, 255, 0.5);
-            opacity: 0.85;
-        }
-
-        /* ===== TICKET ===== */
-        .ticket-content { 
-            max-width: 600px; 
-            margin: 0 auto;
-        }
-
-        .ticket-info { 
-            margin-bottom: 50px; 
-            padding: 40px; 
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            transition: all var(--transition);
-        }
-
-        .ticket-info:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .ticket-info h3 { 
-            font-size: 20px; 
-            letter-spacing: 1px; 
-            margin-bottom: 20px; 
-            font-weight: 600;
-        }
-
-        .ticket-info p { 
-            font-size: 13px; 
-            line-height: 1.8; 
-            opacity: 0.75;
-        }
-
-        .ticket-btn { 
-            display: inline-block; 
-            width: 100%; 
-            padding: 16px; 
-            background: var(--accent);
-            color: var(--bg-dark);
-            text-decoration: none; 
-            letter-spacing: 1.5px; 
-            font-size: 13px; 
-            font-weight: 700;
-            border-radius: 4px; 
-            transition: all var(--transition);
-            border: none; 
-            cursor: pointer;
-        }
-
-        .ticket-btn:not(.disabled):hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
-            letter-spacing: 2px;
-        }
-
-        .ticket-btn.disabled { 
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.4);
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        .coming-soon { 
-            text-align: center; 
-            padding: 40px; 
-            opacity: 0.5; 
-            font-size: 14px; 
-            letter-spacing: 2px;
-            animation: drift 4s ease-in-out infinite;
-        }
-
-        @keyframes drift {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(5px); }
-        }
-
-        /* ===== CONTACT ===== */
-        .contact-content { 
-            max-width: 500px; 
-            margin: 0 auto; 
-            text-align: center;
-        }
-
-        .contact-icons { 
-            display: flex; 
-            justify-content: center; 
-            gap: 40px; 
-            margin-bottom: 50px;
-        }
-
-        .contact-item {
-            text-decoration: none;
-            transition: all var(--transition);
-        }
-
-        .contact-icon { 
-            font-size: 32px; 
-            margin-bottom: 15px; 
-            opacity: 0.8;
-            transition: all var(--transition);
-            color: var(--text-primary);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-item:hover .contact-icon { 
-            opacity: 1; 
-            transform: scale(1.15) rotate(5deg);
-            border-color: rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .contact-divider { 
-            width: 40px; 
-            height: 1px; 
-            background: var(--border);
-            margin: 50px auto;
-            transition: all var(--transition);
-        }
-
-        .contact-content:hover .contact-divider {
-            width: 60px;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .contact-text { 
-            font-size: 13px; 
-            line-height: 2; 
-            opacity: 0.7;
-            color: var(--text-secondary);
-        }
-
-        .contact-text p {
-            transition: all var(--transition);
-        }
-
-        .contact-text p:hover {
-            opacity: 1;
-            color: var(--text-primary);
-        }
-
-        /* ===== FOOTER ===== */
-        footer { 
-            padding: 40px; 
-            text-align: center; 
-            opacity: 0.4; 
-            font-size: 11px; 
-            letter-spacing: 2px; 
-            border-top: 1px solid var(--border);
-            transition: all var(--transition);
-        }
-
-        footer:hover {
-            opacity: 0.6;
-            border-top-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* ===== RESPONSIVE ===== */
+        .slider-btn { pointer-events: auto; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.06); border: none; color: #fff; font-size: 18px; padding: 10px 14px; cursor: pointer; transition: background 0.3s; z-index: 10; }
+        .slider-btn:hover { background: rgba(255,255,255,0.12); }
+        .slider-btn.prev { left: 12px; }
+        .slider-btn.next { right: 12px; }
+        .slider-dots { text-align: center; margin-top: 18px; }
+        .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #333; margin: 0 5px; cursor: pointer; transition: background 0.3s; }
+        .dot.active { background: #999; }
+        .project-description { max-width: 800px; margin: 20px auto 0; padding: 0; background: transparent; border: none; border-radius: 0; }
+        .project-meta { font-size: 11px; opacity: 0.6; margin-bottom: 18px; line-height: 1.8; padding: 20px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 2px; }
+        .project-meta span { display: block; }
+        .project-description p { font-size: 12px; line-height: 1.8; opacity: 0.7; margin-bottom: 12px; }
+        .project-description p:last-child { margin-bottom: 0; }
+        .project-highlight { font-size: 11px; opacity: 0.5; margin-top: 15px; font-style: italic; }
+        .ticket-content { max-width: 600px; margin: 0 auto; }
+        .ticket-info { margin-bottom: 50px; padding: 40px; background: #0a0a0a; border: 1px solid #222; border-radius: 2px; }
+        .ticket-info h3 { font-size: 20px; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600; }
+        .ticket-info p { font-size: 13px; line-height: 1.8; opacity: 0.75; }
+        .ticket-btn { display: inline-block; width: 100%; padding: 14px; background: #fff; color: #000; text-decoration: none; letter-spacing: 1.5px; font-size: 13px; font-weight: 600; border-radius: 2px; transition: all 0.3s; border: none; cursor: pointer; }
+        .ticket-btn.disabled { background: #444; color: #999; cursor: not-allowed; opacity: 0.5; }
+        .coming-soon { text-align: center; padding: 40px; opacity: 0.5; font-size: 14px; letter-spacing: 2px; }
+        .contact-content { max-width: 500px; margin: 0 auto; text-align: center; }
+        .contact-icons { display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; }
+        .contact-icon { font-size: 32px; margin-bottom: 15px; opacity: 0.8; transition: all 0.3s; color: #fff; }
+        .contact-item a:hover .contact-icon { opacity: 1; transform: scale(1.1); }
+        .contact-divider { width: 40px; height: 1px; background: #333; margin: 50px auto; }
+        .contact-text { font-size: 13px; line-height: 2; opacity: 0.7; }
+        footer { padding: 40px; text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 2px; border-top: 1px solid #333; }
         @media (max-width: 768px) {
-            header { 
-                padding: 15px 20px;
-            }
-
-            .menu-button { 
-                display: block;
-            }
-
-            .logo { 
-                display: none;
-            }
-
-            nav { 
-                gap: 20px;
-            }
-
-            nav a { 
-                font-size: 11px; 
-                letter-spacing: 1.5px;
-            }
-
-            nav a:not(.show-mobile) { 
-                display: none;
-            }
-
-            .home-hero { 
-                padding-top: 80px;
-            }
-
-            .home-hero h1 { 
-                font-size: 60px;
-                letter-spacing: -5px;
-            }
-
-            .page-content { 
-                padding: 60px 20px;
-            }
-
-            .page-title { 
-                font-size: 36px;
-            }
-
-            .slider-btn { 
-                font-size: 16px; 
-                padding: 8px 12px;
-            }
-
-            .project-description { 
-                padding: 0;
-            }
-
-            .contact-icons {
-                gap: 30px;
-            }
+            header { padding: 15px 20px; }
+            .menu-button { display: block; }
+            .logo { display: none; }
+            nav { gap: 20px; }
+            nav a { font-size: 11px; letter-spacing: 1.5px; }
+            nav a:not(.show-mobile) { display: none; }
+            .home-hero { padding-top: 100px; }
+            .home-hero h1 { font-size: 60px; }
+            .page-content { padding: 60px 20px; }
+            .page-title { font-size: 28px; }
+            .slider-btn { font-size: 16px; padding: 8px 12px; }
+            .project-description { padding: 20px; }
         }
     </style>
 </head>
