@@ -409,7 +409,7 @@
                 <div class="gallery-section">
                     <div class="projects-list">
                         <div class="project-item">
-                            <div class="project-year">2024 book</div>
+                            <div class="project-year">2024 Book</div>
                             <div class="project-title">WORKS V.1 TRANS</div>
                             <div class="project-status sold-out">SOLD OUT</div>
                         </div>
@@ -426,7 +426,7 @@
                 <div class="gallery-section">
                     <div class="projects-list">
                         <div class="project-item">
-                            <div class="project-year">2025 book</div>
+                            <div class="project-year">2025 Book</div>
                             <div class="project-title">WORKS V.2 TRANS III : Gesture of the Lost Subject</div>
                             <div class="project-status">
                                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScMUcb01CuLRD90xjreMD3NTxgekUis2CbytDm3yPYPvtcEiA/viewform" target="_blank" class="buy-link">구매하기</a>
@@ -516,13 +516,13 @@
         const intro = document.getElementById('intro');
         const skipBtn = document.querySelector('.skip-btn');
         
-        // 각 단어별 속도 프리셋 (랜덤하게 선택)
+        // 각 단어별 속도 프리셋 (40% 더 빠르게)
         const speedPresets = [
-            { type: 100, delete: 60, pause: 1000 },  // 빠름
-            { type: 140, delete: 90, pause: 1300 },  // 느림
-            { type: 120, delete: 70, pause: 1100 },  // 중간
-            { type: 90, delete: 50, pause: 900 },    // 매우 빠름
-            { type: 160, delete: 100, pause: 1400 }, // 매우 느림
+            { type: 60, delete: 36, pause: 600 },   // 빠름
+            { type: 84, delete: 54, pause: 780 },   // 느림
+            { type: 72, delete: 42, pause: 660 },   // 중간
+            { type: 54, delete: 30, pause: 540 },   // 매우 빠름
+            { type: 96, delete: 60, pause: 840 },   // 매우 느림
         ];
         
         let currentSpeed = speedPresets[0];
@@ -546,7 +546,7 @@
                         introText.textContent = currentText;
                         setTimeout(() => {
                             endIntro();
-                        }, 1500);
+                        }, 900); // 0.9초 대기 후 종료
                         return;
                     }
                     isDeleting = true;
@@ -581,9 +581,12 @@
             intro.classList.add('fade-out');
             setTimeout(() => {
                 intro.style.display = 'none';
-                // 홈 페이지 활성화
+            }, 800);
+            // 0.8초 페이드 아웃 후 홈으로 이동
+            setTimeout(() => {
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
                 document.getElementById('home').classList.add('active');
+                window.scrollTo(0, 0);
             }, 800);
         }
         
