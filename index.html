@@ -464,7 +464,7 @@
         <div class="page-content">
             <h1 class="page-title">TICKET</h1>
             <div class="ticket-content">
-                <div class="coming-soon">Not Available</div>
+                <div class="coming-soon">NOT AVAILABLE</div>
                 <div class="ticket-info" style="opacity: 0.5;">
                     <h3>TRANS III: 주어 없는 움직임</h3>
                     <p>2025년 8월 5일 - 8월 6일<br>서강대학교 메리홀 대극장<br><br>본 공연은 종료되었습니다.</p>
@@ -492,7 +492,7 @@
         </div>
     </div>
 
-    <footer><p>© 2026 TRANS. ALL RIGHTS RESERVED.</p></footer>
+    <footer><p>© 2026년 TRANS. ALL RIGHTS RESERVED.</p></footer>
 
     <script>
         // 인트로 애니메이션
@@ -581,7 +581,9 @@
             intro.classList.add('fade-out');
             setTimeout(() => {
                 intro.style.display = 'none';
-                showPage('home');
+                // 홈 페이지 활성화
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById('home').classList.add('active');
             }, 800);
         }
         
@@ -600,13 +602,13 @@
             setTimeout(typeWriter, 500);
         });
 
-       const images = {
+        const images = {
             '2023': ['1p6PZxTKRD5CD7Bsn-4GBIdua8SXnq2X2', '1oicnoeqiKautvJ9Jigldh3hjmmV2J77R', '18iFtU2OafU-eO98C7qQwayWHOD-9ioBM', '1KrXSX_kHJHCdmL_AWy9oBgFX5t9L9gTy', '1gSV6heehSsdV1TE-kA_-iZpoUrCMWxgW', '1XvIE7-Pj8aBBav6tapT-kPAmye4BhNug', '17LebIxJA3-25Zv0jLDqcEm8q-9T6ScpY', '1Jzj6AAypp4RrprUgG1v-R8kJgx5R_dk1', '1dn8-Ln36lha5NolxOpVP5scmMht9prLG', '1xNpvPaixBtGmoDuFfI7uoYVGHq8OIJPj', '10awSVGmK6Eiq6oPmUwZP_PHzFxozEzIw'],
-            '2024': ['1k_3_z8ujfQfRGfqJHVnr5oG2WwRSLbgm', '1LXw5_AaX6qyrVrVrMTLiaI9tAsrQ7uMf', '1djqpX29I4MYvbOZUxWUw-vghvA9yXoxX', '1w49od96-CG_MCxvxhI7ajGGG4MvghofB', '1LFswUDUn8K9FiD7KD4Mc7CvjO6WPEBh9', '1RMQPja41SnwPu-4xcAZmTMiOicxBibio', '1Z1CMv2bCFjaXev0FP5VJzGy-f27S-3y9', '1NI7ElywBHX4Tg-yTbL3eCfJ0al9zIJ6S', '1br82iSJieixG3RBqeIDFL7WutD4uAvIU', '1O7C54rCzHRTU2MCcOJu0l2lXBOPSG0BP'],
-            '2025': ['1WklQ1hmqxJDgI0XLaRvNk8hxLsDM7_1P', '1mB2_LN1QDE46J8loHGWGp6zKRRmpxeob', '1hO-NBfLS6J92SJqN3Nq49jm0ZLgtnSUB', '1xftK0qkdlEPxk5u1s_rglzjCArRAU4-C', '1fSKmyOI4knyCSwM57ck7nCTC4wa2Eo4Q', '1ysgAVxUPYOAFnZNC6s1jiof36d_04JHL', '1BJ-rCrvTUkDpiAxmX7X3hcbH3y7tgXFc', '16xxo4XJMBGm6T9e8uRgx4CuGT0Xh3K0N', '1EC5J9RPJ3GXXTMxS5-OWmmLBoIcY_e0T', '1W560zMNkxmCypqcnQlKVr7EDp8cvyN70'],
+            '2024': ['1br82iSJieixG3RBqeIDFL7WutD4uAvIU', '1O7C54rCzHRTU2MCcOJu0l2lXBOPSG0BP', '1NI7ElywBHX4Tg-yTbL3eCfJ0al9zIJ6S', '1Z1CMv2bCFjaXev0FP5VJzGy-f27S-3y9', '1RMQPja41SnwPu-4xcAZmTMiOicxBibio', '1LFswUDUn8K9FiD7KD4Mc7CvjO6WPEBh9', '1w49od96-CG_MCxvxhI7ajGGG4MvghofB', '1djqpX29I4MYvbOZUxWUw-vghvA9yXoxX', '1LXw5_AaX6qyrVrVrMTLiaI9tAsrQ7uMf', '1k_3_z8ujfQfRGfqJHVnr5oG2WwRSLbgm'],
+            '2025': ['16xxo4XJMBGm6T9e8uRgx4CuGT0Xh3K0N', '1BJ-rCrvTUkDpiAxmX7X3hcbH3y7tgXFc', '1EC5J9RPJ3GXXTMxS5-OWmmLBoIcY_e0T', '1W560zMNkxmCypqcnQlKVr7EDp8cvyN70', '1WklQ1hmqxJDgI0XLaRvNk8hxLsDM7_1P', '1fSKmyOI4knyCSwM57ck7nCTC4wa2Eo4Q', '1hO-NBfLS6J92SJqN3Nq49jm0ZLgtnSUB', '1mB2_LN1QDE46J8loHGWGp6zKRRmpxeob', '1xftK0qkdlEPxk5u1s_rglzjCArRAU4-C', '1ysgAVxUPYOAFnZNC6s1jiof36d_04JHL'],
             'archive1': ['1Jv1kgdVE-LT7bJy51OJBN00LvyNXG5qs'],
-            'archive2': ['1DGVQTrzpeb0psf20F44_gggRQMfQdgsx', '1SXz_MbKx6tJFd2k07qwc7XF1B1uo_1JV'],
-            'archive3': ['1flTZVeux92GsaHcs1MOcBMuM08_QZICV', '1MRBbo1LSXifJ3_q19sopqShsedYHyBEp', '1q5OY9iHulyUTKa3nSoqjLe36Ckwxl92C', '1r8omgtSLCfdmQmLDSRGGHRlDoyaOserc', '183Rwo2bBl6IyMOpsaS_OhOkCdgYFFLhU', '1oK1Vh4WDft35bvj2SIu70hH3SszpNsBG', '1j_apQ91rLKbG5P35ux9nc5LWNOvPVfJe']
+            'archive2': ['1SXz_MbKx6tJFd2k07qwc7XF1B1uo_1JV', '1DGVQTrzpeb0psf20F44_gggRQMfQdgsx'],
+            'archive3': ['1j_apQ91rLKbG5P35ux9nc5LWNOvPVfJe', '1oK1Vh4WDft35bvj2SIu70hH3SszpNsBG', '183Rwo2bBl6IyMOpsaS_OhOkCdgYFFLhU', '1r8omgtSLCfdmQmLDSRGGHRlDoyaOserc', '1q5OY9iHulyUTKa3nSoqjLe36Ckwxl92C', '1MRBbo1LSXifJ3_q19sopqShsedYHyBEp', '1flTZVeux92GsaHcs1MOcBMuM08_QZICV']
         };
         let currentSlide = { '2023': 0, '2024': 0, '2025': 0, 'archive1': 0, 'archive2': 0, 'archive3': 0 };
         let touchStartX = 0, touchEndX = 0;
