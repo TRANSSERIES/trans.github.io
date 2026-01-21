@@ -111,6 +111,11 @@
             cursor: pointer;
         }
         
+        .tap-indicator:hover,
+        .swipe-indicator:hover {
+            opacity: 0.7;
+        }
+        
         .swipe-text, .tap-text {
             font-size: 11px;
             letter-spacing: 3px;
@@ -124,9 +129,48 @@
             color: #f5f5f0;
         }
         
+        .tap-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(245,245,240,0.4);
+            border-radius: 50%;
+            position: relative;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        .tap-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: rgba(245,245,240,0.4);
+            border-radius: 50%;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+        }
+        
         @keyframes floatUp {
             0%, 100% { transform: translateY(0); opacity: 0.4; }
             50% { transform: translateY(-8px); opacity: 0.8; }
+        }
+        
+        @media (max-width: 768px) {
+            .intro-text { font-size: 40px; letter-spacing: -2px; }
+            .swipe-indicator { display: flex; bottom: 100px; }
+            .tap-indicator { display: none; }
+            .swipe-text { font-size: 10px; letter-spacing: 2px; }
+            .swipe-arrow { font-size: 18px; }
+        }
+        
+        @media (min-width: 769px) {
+            .swipe-indicator { display: none; }
+            .tap-indicator { display: flex; }
         }
         
         header { 
@@ -168,6 +212,39 @@
             transition: opacity 0.3s; 
         }
         nav a:hover { opacity: 0.7; }
+        
+        .home-btn {
+            display: none;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .home-btn:hover {
+            opacity: 1;
+        }
+        .home-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #f5f5f0;
+        }
+        @media (max-width: 768px) {
+            .home-btn.show {
+                display: flex;
+            }
+        }
+        
+        .menu-button { display: none; font-size: 24px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s; color: #f5f5f0; }
+        .menu-button:hover { opacity: 1; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(13, 58, 26, 0.98); z-index: 2000; padding: 80px 40px; }
+        .mobile-menu.active { display: flex; flex-direction: column; gap: 30px; }
+        .mobile-menu a { color: #f5f5f0; text-decoration: none; font-size: 24px; letter-spacing: 2px; opacity: 0.8; transition: opacity 0.3s; }
+        .mobile-menu a:hover { opacity: 1; }
+        .close-menu { position: absolute; top: 30px; right: 40px; font-size: 32px; cursor: pointer; opacity: 0.8; color: #f5f5f0; }
+        .close-menu:hover { opacity: 1; }
         
         .page {
             display: none;
@@ -219,6 +296,10 @@
             color: #f5f5f0;
         }
         
+        @media (min-width: 769px) {
+            .home-hero h1 { letter-spacing: -15px; }
+        }
+        
         .social-icons { 
             display: flex; 
             gap: 25px; 
@@ -231,7 +312,7 @@
             color: #f5f5f0; 
             font-size: 18px; 
             transition: all 0.3s; 
-            opacity: 0.6; 
+            opacity: 0.7; 
         }
         
         .social-icons a:hover { 
@@ -282,6 +363,8 @@
         
         .about-text p { margin-bottom: 18px; }
         
+        .projects-list { max-width: 800px; margin: 0 auto; }
+        
         .project-tabs { 
             display: flex; 
             justify-content: center; 
@@ -306,10 +389,44 @@
             border-bottom-color: #f5f5f0; 
         }
         
+        .project-tab:hover { opacity: 0.8; }
+        
+        .project-section { display: none; }
+        .project-section.active { display: block; }
+        
         .project-item {
             padding: 30px 0;
             border-bottom: 1px solid rgba(245, 245, 240, 0.1);
             position: relative;
+        }
+        
+        .project-item:last-child { border-bottom: none; }
+        
+        .project-status {
+            position: absolute;
+            right: 0;
+            top: 35px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .sold-out { color: #ff6b6b; }
+        
+        .buy-link {
+            color: #f5f5f0;
+            text-decoration: none;
+            padding: 8px 20px;
+            border: 1px solid #f5f5f0;
+            border-radius: 2px;
+            transition: all 0.3s;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+        
+        .buy-link:hover {
+            background: #f5f5f0;
+            color: #0d3a1a;
         }
         
         .project-year { 
@@ -336,6 +453,8 @@
             color: #f5f5f0;
         }
         
+        .gallery-section { margin-bottom: 80px; }
+        
         .slider-container {
             position: relative;
             max-width: 800px;
@@ -347,7 +466,7 @@
         .slider { 
             overflow: hidden; 
             border-radius: 2px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         .slides { display: flex; transition: transform 0.4s ease; }
@@ -359,8 +478,12 @@
             object-fit: contain;
             background: linear-gradient(135deg, #0a2412 0%, #0d3a1a 100%);
             user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
         }
         
+        .slider-btn { pointer-events: auto; }
         .slider-btn { 
             position: absolute; 
             top: 50%; 
@@ -418,6 +541,8 @@
             color: #f5f5f0;
         }
         
+        .project-meta span { display: block; }
+        
         .project-description p { 
             font-size: 12px; 
             line-height: 1.8; 
@@ -425,6 +550,8 @@
             margin-bottom: 12px;
             color: #f5f5f0;
         }
+        
+        .project-description p:last-child { margin-bottom: 0; }
         
         .project-highlight { 
             font-size: 11px; 
@@ -434,11 +561,21 @@
             color: #f5f5f0;
         }
         
+        .ticket-content { max-width: 600px; margin: 0 auto; }
+        .ticket-info { margin-bottom: 50px; padding: 40px; background: rgba(245, 245, 240, 0.03); border: 1px solid rgba(245, 245, 240, 0.1); border-radius: 2px; }
+        .ticket-info h3 { font-size: 20px; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600; color: #f5f5f0; }
+        .ticket-info p { font-size: 13px; line-height: 1.8; opacity: 0.75; color: #f5f5f0; }
+        .ticket-btn { display: inline-block; width: 100%; padding: 14px; background: #f5f5f0; color: #0d3a1a; text-decoration: none; letter-spacing: 1.5px; font-size: 13px; font-weight: 600; border-radius: 2px; transition: all 0.3s; border: none; cursor: pointer; }
+        .ticket-btn.disabled { background: #333; color: #999; cursor: not-allowed; opacity: 0.5; }
+        .coming-soon { text-align: center; padding: 40px; opacity: 0.5; font-size: 14px; letter-spacing: 2px; color: #f5f5f0; }
+        
         .contact-content { 
             max-width: 500px; 
             margin: 0 auto; 
             text-align: center; 
         }
+        
+        .contact-icons { display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; }
         
         .contact-icon { 
             font-size: 32px; 
@@ -479,10 +616,17 @@
         
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
+            .menu-button { display: block; }
+            .logo { display: none; }
+            nav { gap: 20px; }
+            nav a { font-size: 11px; letter-spacing: 1.5px; }
+            nav a:not(.show-mobile) { display: none; }
             .home-hero { padding-top: 100px; }
             .home-hero h1 { font-size: 60px; }
             .page-content { padding: 60px 20px; }
             .page-title { font-size: 28px; }
+            .slider-btn { font-size: 16px; padding: 8px 12px; }
+            .project-description { padding: 20px; }
         }
     </style>
 </head>
@@ -493,24 +637,41 @@
             <div class="swipe-text">SWIPE UP</div>
             <div class="swipe-arrow">↑</div>
         </div>
+        <div class="tap-indicator" onclick="goToHome()">
+            <div class="tap-icon"></div>
+            <div class="tap-text">TAP ANYWHERE TO UNLOCK</div>
+        </div>
     </div>
 
     <header>
+        <div class="menu-button" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
         <div class="logo" onclick="showPage('home')">
-            <svg viewBox="0 0 400 150" style="height: 50px; width: auto;">
-                <text x="20" y="110" font-size="90" font-weight="900" fill="#f5f5f0" letter-spacing="-3">TRANS</text>
-                <text x="250" y="120" font-size="30" fill="#f5f5f0" letter-spacing="3">SERIES</text>
-                <line x1="20" y1="20" x2="380" y2="20" stroke="#f5f5f0" stroke-width="3"/>
-                <line x1="20" y1="130" x2="380" y2="130" stroke="#f5f5f0" stroke-width="3"/>
+            <img src="https://lh3.googleusercontent.com/d/1F_94TKqnY_R5JDh1AFkEeEv3aO2Dl8mM=w400" alt="TRANS">
+        </div>
+        <div class="home-btn" id="homeBtn" onclick="showPage('home')">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
             </svg>
         </div>
         <nav>
             <a href="#" onclick="showPage('home'); return false;">HOME</a>
             <a href="#" onclick="showPage('about'); return false;">ABOUT</a>
-            <a href="#" onclick="showPage('projects'); return false;">PROJECTS</a>
-            <a href="#" onclick="showPage('contact'); return false;">CONTACT</a>
+            <a href="#" onclick="showPage('projects'); return false;" class="show-mobile">PROJECTS</a>
+            <a href="#" onclick="showPage('ticket'); return false;">TICKET</a>
+            <a href="#" onclick="showPage('contact'); return false;" class="show-mobile">CONTACT</a>
         </nav>
     </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMenu()">✕</div>
+        <a href="#" onclick="showPage('home'); toggleMenu(); return false;">HOME</a>
+        <a href="#" onclick="showPage('about'); toggleMenu(); return false;">ABOUT</a>
+        <a href="#" onclick="showPage('projects'); toggleMenu(); return false;">PROJECTS</a>
+        <a href="#" onclick="showPage('ticket'); toggleMenu(); return false;">TICKET</a>
+        <a href="#" onclick="showPage('contact'); toggleMenu(); return false;">CONTACT</a>
+    </div>
 
     <div id="home" class="page active">
         <div class="home-hero">
@@ -541,6 +702,65 @@
         <div class="page-content">
             <h1 class="page-title">PROJECTS</h1>
             
+            <div class="project-tabs">
+                <div class="project-tab active" onclick="showProjectTab('works')">WORKS</div>
+                <div class="project-tab" onclick="showProjectTab('archive')">ARCHIVE</div>
+            </div>
+
+            <div id="works-section" class="project-section active">
+            <div class="gallery-section">
+                <div class="projects-list">
+                    <div class="project-item">
+                        <div class="project-year">2023</div>
+                        <div class="project-title">TRANS</div>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider"><div class="slides" id="slides-2023"></div></div>
+                    <button class="slider-btn prev" onclick="changeSlide('2023', -1)">‹</button>
+                    <button class="slider-btn next" onclick="changeSlide('2023', 1)">›</button>
+                    <div class="slider-dots" id="dots-2023"></div>
+                </div>
+                <div class="project-description">
+                    <div class="project-meta">
+                        <span>일자: 2023년 10월 21-22일</span>
+                        <span>장소: Studio Mong</span>
+                        <span>소요시간: 55분</span>
+                        <span>참여자: 오현탁, 오명선, 이현선</span>
+                    </div>
+                    <p>변화하는 우리를 관찰하는 단계. 어떤 모습으로 우리가 변화하고 변신할지 확실하지 않지만, 우리가 변화하고 있는 상태를 인지하고 움직이는 몸과 소리에 집중합니다.</p>
+                    <p>시각으로 볼 수 있는 몸을 &lt;형체&gt;, 청각으로 들리는 소리를 &lt;음체&gt;로 정의합니다. 형체는 형체와, 형체는 음체와, 음체는 다시 형체와 마치 서로 소통하는 듯한 대화를 주고받으며, 청각적이고 시각적으로 모든 감각에 영향을 미치며 변화를 이끝니다.</p>
+                    <p>이것은 마치 바이러스처럼 퍼지는 웃음과 같이 보입니다. 흥미롭게도 서로의 소통이 원활할 때도 있지만 오류가 발생하여 다른 방향이나 반대 방향으로 변화가 일어날 수도 있습니다. 그들은 어떤 형태로 변화하고 어느 방향으로 향하고 있을까요?</p>
+                    <p class="project-highlight">&lt;대화와 소통&gt; 각자만의 표현방법, 서로의 공통언어</p>
+                </div>
+            </div>
+
+            <div class="gallery-section">
+                <div class="projects-list">
+                    <div class="project-item">
+                        <div class="project-year">2024</div>
+                        <div class="project-title">TRANS vol.2</div>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider"><div class="slides" id="slides-2024"></div></div>
+                    <button class="slider-btn prev" onclick="changeSlide('2024', -1)">‹</button>
+                    <button class="slider-btn next" onclick="changeSlide('2024', 1)">›</button>
+                    <div class="slider-dots" id="dots-2024"></div>
+                </div>
+                <div class="project-description">
+                    <div class="project-meta">
+                        <span>일자: 2024년 9월 28-29일</span>
+                        <span>장소: 문래예술극장 박스시어터</span>
+                        <span>소요시간: 60분 (15분 pre-show)</span>
+                        <span>참여자: 이현선, 윤혜진, 조선재, 오현탁, 김건우, 윤대원, 김지우</span>
+                    </div>
+                    <p>'사랑과 폭력은 매우 유사할 수 있지 않을까?'라는 질문을 대화의 시작으로 우리들의 관계, 대화의 모습과 방식, 이로 인해 충돌과 변화, 그리고 때로는 서로를 수용하는 우리들의 태도를 바라보는 것에서 출발합니다.</p>
+                    <p>트랜스 공연은 '사랑과 폭력'이라는 주제를 통해 대화와 관계에서 나타나는 복합적인 모습을 무대 위로 소환합니다.</p>
+                    <p>일상 대화를 바탕으로 개인의 의견 변화와 갈등을 탐구하며, 퍼포머의 몸(바디)을 중심으로 라이트, 사운드, 영상 등 다양한 매체를 활용하여 관객의 감각적 경험을 확장하고자 합니다. 관객은 무대 위 대화를 시각화한 퍼포밴스를 통해 대화와 관계 속에서 어떻게 변화하는지를 보여주는 것이 바로 트랜스 작업이 추구하는 부분입니다.</p>
+                </div>
+            </div>
+
             <div class="gallery-section">
                 <div class="projects-list">
                     <div class="project-item">
@@ -549,10 +769,10 @@
                     </div>
                 </div>
                 <div class="slider-container">
-                    <div class="slider"><div class="slides" id="slides-main">
-                        <div class="slide"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230f4620;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230d3a1a;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23grad1)'/%3E%3Ccircle cx='400' cy='300' r='150' fill='%23f5f5f0' opacity='0.1'/%3E%3Cpath d='M 300 200 Q 400 100 500 200' stroke='%23f5f5f0' stroke-width='2' fill='none' opacity='0.2'/%3E%3Ctext x='400' y='320' font-size='48' fill='%23f5f5f0' text-anchor='middle' opacity='0.3'%3ETRANS III%3C/text%3E%3C/svg%3E" alt="TRANS III"></div>
-                    </div></div>
-                    <div class="slider-dots" id="dots-main"></div>
+                    <div class="slider"><div class="slides" id="slides-2025"></div></div>
+                    <button class="slider-btn prev" onclick="changeSlide('2025', -1)">‹</button>
+                    <button class="slider-btn next" onclick="changeSlide('2025', 1)">›</button>
+                    <div class="slider-dots" id="dots-2025"></div>
                 </div>
                 <div class="project-description">
                     <div class="project-meta">
@@ -561,9 +781,88 @@
                         <span>소요시간: 45분 (10분 pre-open)</span>
                         <span>참여자: 오현탁, 오명선 (김민우)</span>
                     </div>
-                    <p>개인의 리듬과 감각이 외부 구조와 어떻게 충돌하고 흔들리는지를 물리적으로 탐구하는 퍼포먼스입니다.</p>
+                    <p>《TRANS III》는 개인의 리듬과 감각이 외부 구조와 어떻게 충돌하고 흔들리는지를 물리적으로 탐구하는 퍼포먼스다. "개별의 동일성"을 요구하는 현대 사회의 흐름 속에서, '효율'과 '표준화'라는 명분 아래 개인의 고유한 리듬과 선택이 얼마나 쉽게 동일화되는지를 바라본다.</p>
+                    <p>신체는 물리적 작용을 통해 균형을 무너뜨리고, 다시 세우고, 반복하며 외부 조건에 반응하거나 무시하며 자신의 리듬을 지켜가려는 흔들림의 움직임을 이어간다. 동시에 사운드는 공간의 또 다른 층위를 구성해 눈에 보이지 않는 '둘 번째 무대'를 만들어낸다.</p>
+                    <p>《TRANS III》는 관객에게 직접적으로 메시지를 전달하지 않고 다음과 같은 질문을 던진다.</p>
                     <p class="project-highlight">"우리는 스스로 움직이고 있는가, 아니면 움직이게 되는가?"</p>
                 </div>
+            </div>
+
+            <div class="projects-list" style="margin-top: 40px;">
+                <div class="project-item">
+                    <div class="project-year">2026</div>
+                    <div class="project-title">포용 / Embrace</div>
+                    <div class="project-info">SeMA West Seoul Museum of Art · Upcoming</div>
+                </div>
+            </div>
+            </div>
+
+            <div id="archive-section" class="project-section">
+                <!-- WORKS V.1 -->
+                <div class="gallery-section">
+                    <div class="projects-list">
+                        <div class="project-item">
+                            <div class="project-year">2024 Book</div>
+                            <div class="project-title">WORKS V.1 TRANS</div>
+                            <div class="project-status sold-out">SOLD OUT</div>
+                        </div>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider"><div class="slides" id="slides-archive1"></div></div>
+                        <button class="slider-btn prev" onclick="changeSlide('archive1', -1)">‹</button>
+                        <button class="slider-btn next" onclick="changeSlide('archive1', 1)">›</button>
+                        <div class="slider-dots" id="dots-archive1"></div>
+                    </div>
+                </div>
+
+                <!-- WORKS V.2 -->
+                <div class="gallery-section">
+                    <div class="projects-list">
+                        <div class="project-item">
+                            <div class="project-year">2025 Book</div>
+                            <div class="project-title">WORKS V.2 TRANS III : Gesture of the Lost Subject</div>
+                            <div class="project-status">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLScMUcb01CuLRD90xjreMD3NTxgekUis2CbytDm3yPYPvtcEiA/viewform" target="_blank" class="buy-link">구매하기</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider"><div class="slides" id="slides-archive2"></div></div>
+                        <button class="slider-btn prev" onclick="changeSlide('archive2', -1)">‹</button>
+                        <button class="slider-btn next" onclick="changeSlide('archive2', 1)">›</button>
+                        <div class="slider-dots" id="dots-archive2"></div>
+                    </div>
+                </div>
+
+                <!-- 상의회 및 애프터톡 -->
+                <div class="gallery-section">
+                    <div class="projects-list">
+                        <div class="project-item">
+                            <div class="project-year">2025 Artist Talk (Streaming)</div>
+                            <div class="project-title">TRANS III : 주어 없는 움직임</div>
+                        </div>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider"><div class="slides" id="slides-archive3"></div></div>
+                        <button class="slider-btn prev" onclick="changeSlide('archive3', -1)">‹</button>
+                        <button class="slider-btn next" onclick="changeSlide('archive3', 1)">›</button>
+                        <div class="slider-dots" id="dots-archive3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ticket" class="page">
+        <div class="page-content">
+            <h1 class="page-title">TICKET</h1>
+            <div class="ticket-content">
+                <div class="coming-soon">NOT AVAILABLE</div>
+                <div class="ticket-info" style="opacity: 0.5;">
+                    <h3>TRANS III: 주어 없는 움직임</h3>
+                    <p>2025년 8월 5일 - 8월 6일<br>서강대학교 메리홀 대극장<br><br>본 공연은 종료되었습니다.</p>
+                </div>
+                <button class="ticket-btn disabled">예매하기</button>
             </div>
         </div>
     </div>
@@ -572,7 +871,7 @@
         <div class="page-content">
             <h1 class="page-title">CONTACT</h1>
             <div class="contact-content">
-                <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 50px;">
+                <div class="contact-icons">
                     <a href="mailto:trans0819@naver.com" class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div></a>
                     <a href="https://www.instagram.com/trans_series" target="_blank" class="contact-item"><div class="contact-icon"><i class="fab fa-instagram"></i></div></a>
                     <a href="https://www.youtube.com/@transseries" target="_blank" class="contact-item"><div class="contact-icon"><i class="fab fa-youtube"></i></div></a>
@@ -674,6 +973,12 @@
             intro.addEventListener('click', goToHome);
         }
         
+        document.addEventListener('keydown', (e) => {
+            if (intro.style.display !== 'none' && window.innerWidth > 768) {
+                goToHome();
+            }
+        });
+        
         window.addEventListener('load', () => {
             const introSeen = sessionStorage.getItem('introSeen');
             if (introSeen === 'true') {
@@ -685,13 +990,126 @@
             setTimeout(typeWriter, 500);
         });
 
+        const images = {
+            '2023': ['1p6PZxTKRD5CD7Bsn-4GBIdua8SXnq2X2', '1oicnoeqiKautvJ9Jigldh3hjmmV2J77R', '18iFtU2OafU-eO98C7qQwayWHOD-9ioBM', '1KrXSX_kHJHCdmL_AWy9oBgFX5t9L9gTy', '1gSV6heehSsdV1TE-kA_-iZpoUrCMWxgW', '1XvIE7-Pj8aBBav6tapT-kPAmye4BhNug', '17LebIxJA3-25Zv0jLDqcEm8q-9T6ScpY', '1Jzj6AAypp4RrprUgG1v-R8kJgx5R_dk1', '1dn8-Ln36lha5NolxOpVP5scmMht9prLG', '1xNpvPaixBtGmoDuFfI7uoYVGHq8OIJPj', '10awSVGmK6Eiq6oPmUwZP_PHzFxozEzIw'],
+            '2024': ['1k_3_z8ujfQfRGfqJHVnr5oG2WwRSLbgm', '1LXw5_AaX6qyrVrVrMTLiaI9tAsrQ7uMf', '1djqpX29I4MYvbOZUxWUw-vghvA9yXoxX', '1w49od96-CG_MCxvxhI7ajGGG4MvghofB', '1LFswUDUn8K9FiD7KD4Mc7CvjO6WPEBh9', '1RMQPja41SnwPu-4xcAZmTMiOicxBibio', '1Z1CMv2bCFjaXev0FP5VJzGy-f27S-3y9', '1NI7ElywBHX4Tg-yTbL3eCfJ0al9zIJ6S', '1br82iSJieixG3RBqeIDFL7WutD4uAvIU', '1O7C54rCzHRTU2MCcOJu0l2lXBOPSG0BP'],
+            '2025': ['1WklQ1hmqxJDgI0XLaRvNk8hxLsDM7_1P', '1mB2_LN1QDE46J8loHGWGp6zKRRmpxeob', '1hO-NBfLS6J92SJqN3Nq49jm0ZLgtnSUB', '1xftK0qkdlEPxk5u1s_rglzjCArRAU4-C', '1fSKmyOI4knyCSwM57ck7nCTC4wa2Eo4Q', '1ysgAVxUPYOAFnZNC6s1jiof36d_04JHL', '1BJ-rCrvTUkDpiAxmX7X3hcbH3y7tgXFc', '16xxo4XJMBGm6T9e8uRgx4CuGT0Xh3K0N', '1EC5J9RPJ3GXXTMxS5-OWmmLBoIcY_e0T', '1W560zMNkxmCypqcnQlKVr7EDp8cvyN70'],
+            'archive1': ['1Jv1kgdVE-LT7bJy51OJBN00LvyNXG5qs'],
+            'archive2': ['1DGVQTrzpeb0psf20F44_gggRQMfQdgsx', '1SXz_MbKx6tJFd2k07qwc7XF1B1uo_1JV'],
+            'archive3': ['1flTZVeux92GsaHcs1MOcBMuM08_QZICV', '1MRBbo1LSXifJ3_q19sopqShsedYHyBEp', '1q5OY9iHulyUTKa3nSoqjLe36Ckwxl92C', '1r8omgtSLCfdmQmLDSRGGHRlDoyaOserc', '183Rwo2bBl6IyMOpsaS_OhOkCdgYFFLhU', '1oK1Vh4WDft35bvj2SIu70hH3SszpNsBG', '1j_apQ91rLKbG5P35ux9nc5LWNOvPVfJe']
+        };
+        
+        let currentSlide = { '2023': 0, '2024': 0, '2025': 0, 'archive1': 0, 'archive2': 0, 'archive3': 0 };
+        let touchStartX = 0, touchEndX = 0;
+
+        function initSlider(year) {
+            const sc = document.getElementById(`slides-${year}`), dc = document.getElementById(`dots-${year}`);
+            images[year].forEach((id, i) => {
+                const s = document.createElement('div');
+                s.className = 'slide';
+                const size = window.innerWidth <= 768 ? 'w800' : 'w1200';
+                s.innerHTML = `<img src="https://drive.google.com/thumbnail?id=${id}&sz=${size}" alt="${year} ${i + 1}" loading="lazy">`;
+                sc.appendChild(s);
+                const d = document.createElement('span');
+                d.className = `dot ${i === 0 ? 'active' : ''}`;
+                d.onclick = () => goToSlide(year, i);
+                dc.appendChild(d);
+            });
+            const sliderEl = sc.parentElement;
+            sliderEl.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, { passive: true });
+            sliderEl.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) changeSlide(year, diff > 0 ? 1 : -1);
+            }, { passive: true });
+        }
+
+        function changeSlide(year, dir) {
+            const total = images[year].length;
+            currentSlide[year] += dir;
+            if (currentSlide[year] < 0) currentSlide[year] = total - 1;
+            if (currentSlide[year] >= total) currentSlide[year] = 0;
+            updateSlider(year);
+        }
+
+        function goToSlide(year, i) {
+            currentSlide[year] = i;
+            updateSlider(year);
+        }
+
+        function updateSlider(year) {
+            const slides = document.getElementById(`slides-${year}`);
+            const dots = document.querySelectorAll(`#dots-${year} .dot`);
+            slides.style.transform = `translateX(-${currentSlide[year] * 100}%)`;
+            dots.forEach((d, i) => d.className = i === currentSlide[year] ? 'dot active' : 'dot');
+        }
+
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             setTimeout(() => {
                 document.getElementById(id).classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 50);
+            window.history.pushState({ page: id }, '', `#${id}`);
+            
+            const homeBtn = document.getElementById('homeBtn');
+            if (window.innerWidth <= 768) {
+                if (id === 'home') {
+                    homeBtn.classList.remove('show');
+                } else {
+                    homeBtn.classList.add('show');
+                }
+            }
         }
+
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) showPage(hash);
+        });
+
+        initSlider('2023');
+        initSlider('2024');
+        initSlider('2025');
+        initSlider('archive1');
+        initSlider('archive2');
+        initSlider('archive3');
+
+        function showProjectTab(tab) {
+            document.querySelectorAll('.project-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.project-section').forEach(s => s.classList.remove('active'));
+            
+            if (tab === 'works') {
+                document.querySelector('.project-tab:first-child').classList.add('active');
+                document.getElementById('works-section').classList.add('active');
+            } else {
+                document.querySelector('.project-tab:last-child').classList.add('active');
+                document.getElementById('archive-section').classList.add('active');
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+        document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+        
+        document.addEventListener('touchstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.target.style.webkitTouchCallout = 'none';
+            }
+        }, { passive: true });
+        
+        document.addEventListener('selectstart', e => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
+        
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('contextmenu', e => e.preventDefault());
+            img.style.webkitUserSelect = 'none';
+            img.style.webkitTouchCallout = 'none';
+        });
     </script>
 </body>
 </html>
