@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,59 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRANS</title>
     
+    <!-- Favicon -->
     <link rel="icon" type="image/webp" href="https://raw.githubusercontent.com/TRANSSERIES/trans/main/favicon.webp">
+    
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="TRANS">
-    <meta property="og:description" content="TRANS = 변(變) - 우리는 고정되기를 거부한다. 우리는 만남과 충돌을 상상한다.">
+    <meta property="og:description" content="TRANS = 變(변) - 우리는 고정되기를 거부한다. 우리는 만남과 충돌을 상상한다.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/TRANSSERIES/trans/main/og%20img.webp">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://transseries.github.io/trans/">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TRANS">
+    <meta name="twitter:description" content="TRANS = 變(변) - 우리는 고정되기를 거부한다. 우리는 만남과 충돌을 상상한다.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/TRANSSERIES/trans/main/og%20img.webp">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
         
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
-            background: linear-gradient(135deg, #0d3a1a 0%, #0f4620 50%, #0d3a1a 100%);
-            background-attachment: fixed;
-            color: #f5f5f0;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* 종이 질감 오버레이 */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /><feColorMatrix in="noise" type="saturate" values="0.3" /></filter><rect width="100" height="100" fill="rgba(245,245,240,0.02)" filter="url(%23noise)" /></svg>');
-            pointer-events: none;
-            z-index: 1;
-            mix-blend-mode: overlay;
-        }
-        
-        /* 부드러운 그라데이션 효과 */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.05), transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
+        /* 인트로 애니메이션 */
         #intro {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, #0d3a1a 0%, #0f4620 50%, #0d3a1a 100%);
+            background: #000;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -67,11 +44,9 @@
             overflow: hidden;
             touch-action: none;
         }
-        
         #intro.swipe-up {
             transform: translateY(-100%);
         }
-        
         .intro-text {
             font-size: 80px;
             font-weight: 900;
@@ -79,10 +54,7 @@
             text-align: center;
             font-family: monospace;
             min-height: 100px;
-            color: #f5f5f0;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
-        
         .swipe-indicator {
             position: absolute;
             bottom: 120px;
@@ -92,11 +64,10 @@
             flex-direction: column;
             align-items: center;
             gap: 12px;
-            opacity: 0.5;
+            opacity: 0.4;
             transition: opacity 0.3s;
             cursor: pointer;
         }
-        
         .tap-indicator {
             position: absolute;
             bottom: 80px;
@@ -106,38 +77,32 @@
             flex-direction: column;
             align-items: center;
             gap: 12px;
-            opacity: 0.5;
+            opacity: 0.4;
             transition: opacity 0.3s;
             cursor: pointer;
         }
-        
         .tap-indicator:hover,
         .swipe-indicator:hover {
             opacity: 0.7;
         }
-        
-        .swipe-text, .tap-text {
+        .swipe-text,
+        .tap-text {
             font-size: 11px;
             letter-spacing: 3px;
             font-weight: 300;
-            color: #f5f5f0;
         }
-        
         .swipe-arrow {
             font-size: 20px;
             animation: floatUp 1.5s ease-in-out infinite;
-            color: #f5f5f0;
         }
-        
         .tap-icon {
             width: 24px;
             height: 24px;
-            border: 2px solid rgba(245,245,240,0.4);
+            border: 2px solid rgba(255,255,255,0.4);
             border-radius: 50%;
             position: relative;
             animation: pulse 1.5s ease-in-out infinite;
         }
-        
         .tap-icon::after {
             content: '';
             position: absolute;
@@ -146,20 +111,17 @@
             transform: translate(-50%, -50%);
             width: 8px;
             height: 8px;
-            background: rgba(245,245,240,0.4);
+            background: rgba(255,255,255,0.4);
             border-radius: 50%;
         }
-        
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 0.4; }
             50% { transform: scale(1.1); opacity: 0.7; }
         }
-        
         @keyframes floatUp {
             0%, 100% { transform: translateY(0); opacity: 0.4; }
             50% { transform: translateY(-8px); opacity: 0.8; }
         }
-        
         @media (max-width: 768px) {
             .intro-text { font-size: 40px; letter-spacing: -2px; }
             .swipe-indicator { display: flex; bottom: 100px; }
@@ -167,52 +129,17 @@
             .swipe-text { font-size: 10px; letter-spacing: 2px; }
             .swipe-arrow { font-size: 18px; }
         }
-        
         @media (min-width: 769px) {
             .swipe-indicator { display: none; }
             .tap-indicator { display: flex; }
         }
-        
-        header { 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            padding: 20px 60px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            z-index: 1000; 
-            background: rgba(13, 58, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(245, 245, 240, 0.1); 
-        }
-        
-        .logo { 
-            height: 50px; 
-            cursor: pointer; 
-            transition: opacity 0.3s; 
-        }
-        
-        .logo img { 
-            height: 100%; 
-            width: auto; 
-            max-width: 250px; 
-            filter: brightness(0) invert(1);
-        }
-        
-        .logo:hover { opacity: 0.8; }
-        
+        header { position: fixed; top: 0; width: 100%; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(0,0,0,0.98); border-bottom: 1px solid #222; }
+        .logo { height: 50px; cursor: pointer; transition: opacity 0.3s; }
+        .logo img { height: 100%; width: auto; max-width: 250px; }
+        .logo:hover { opacity: 0.7; }
         nav { display: flex; gap: 50px; }
-        nav a { 
-            color: #f5f5f0; 
-            text-decoration: none; 
-            font-size: 12px; 
-            letter-spacing: 2px; 
-            font-weight: 500; 
-            transition: opacity 0.3s; 
-        }
-        nav a:hover { opacity: 0.7; }
-        
+        nav a { color: #fff; text-decoration: none; font-size: 12px; letter-spacing: 2px; font-weight: 500; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.6; }
         .home-btn {
             display: none;
             width: 40px;
@@ -222,8 +149,6 @@
             cursor: pointer;
             opacity: 0.7;
             transition: opacity 0.3s;
-            position: absolute;
-            left: 60px;
         }
         .home-btn:hover {
             opacity: 1;
@@ -231,188 +156,67 @@
         .home-btn svg {
             width: 20px;
             height: 20px;
-            fill: #f5f5f0;
+            fill: #fff;
         }
         @media (max-width: 768px) {
             .home-btn.show {
                 display: flex;
-                position: fixed;
-                left: 70px;
             }
         }
-        
-        .menu-button { display: none; font-size: 24px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s; color: #f5f5f0; }
+        .menu-button { display: none; font-size: 24px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s; }
         .menu-button:hover { opacity: 1; }
-        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(13, 58, 26, 0.98); z-index: 2000; padding: 80px 40px; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.98); z-index: 2000; padding: 80px 40px; }
         .mobile-menu.active { display: flex; flex-direction: column; gap: 30px; }
-        .mobile-menu a { color: #f5f5f0; text-decoration: none; font-size: 24px; letter-spacing: 2px; opacity: 0.8; transition: opacity 0.3s; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 24px; letter-spacing: 2px; opacity: 0.8; transition: opacity 0.3s; }
         .mobile-menu a:hover { opacity: 1; }
-        .close-menu { position: absolute; top: 30px; right: 40px; font-size: 32px; cursor: pointer; opacity: 0.8; color: #f5f5f0; }
+        .close-menu { position: absolute; top: 30px; right: 40px; font-size: 32px; cursor: pointer; opacity: 0.8; }
         .close-menu:hover { opacity: 1; }
-        
         .page {
             display: none;
             min-height: 100vh;
             padding-top: 100px;
             animation: fadeIn 0.5s ease;
-            position: relative;
-            z-index: 10;
         }
-        
         .page.active { display: block; }
-        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .home-hero { 
-            height: calc(100vh - 100px); 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: flex-start; 
-            padding-top: 180px; 
-            gap: 5px; 
-            position: relative; 
-        }
-        
+        .home-hero { height: calc(100vh - 100px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 180px; gap: 5px; position: relative; }
         .home-hero h1 {
             font-size: 140px;
             font-weight: 900;
             letter-spacing: -8px;
             cursor: pointer;
-            transition: all 0.3s;
-            color: #f5f5f0;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: opacity 0.3s;
         }
-        
-        .home-hero h1:hover { 
-            opacity: 0.85;
-            transform: scale(1.02);
-        }
-        
-        .home-hero p { 
-            font-size: 14px; 
-            letter-spacing: 2px; 
-            opacity: 0.7; 
-            font-weight: 700;
-            color: #f5f5f0;
-        }
-        
+        .home-hero h1:hover { opacity: 0.7; }
+        .home-hero p { font-size: 14px; letter-spacing: 2px; opacity: 0.6; font-weight: 700; }
         @media (min-width: 769px) {
             .home-hero h1 { letter-spacing: -15px; }
         }
-        
-        .social-icons { 
-            display: flex; 
-            gap: 25px; 
-            margin-top: 100px; 
-            position: absolute; 
-            bottom: 60px; 
-        }
-        
-        .social-icons a { 
-            color: #f5f5f0; 
-            font-size: 18px; 
-            transition: all 0.3s; 
-            opacity: 0.7; 
-        }
-        
-        .social-icons a:hover { 
-            opacity: 1; 
-            transform: scale(1.2);
-        }
-        
-        .page-content { 
-            max-width: 1000px; 
-            margin: 0 auto; 
-            padding: 80px 60px; 
-        }
-        
-        .page-title { 
-            font-size: 36px; 
-            letter-spacing: 3px; 
-            margin-bottom: 60px; 
-            text-align: center; 
-            font-weight: 600;
-            color: #f5f5f0;
-        }
-        
-        .about-main { 
-            max-width: 700px; 
-            margin: 0 auto 50px; 
-            text-align: center; 
-        }
-        
-        .about-main h2 { 
-            font-size: 16px; 
-            font-weight: 500; 
-            letter-spacing: 0.5px; 
-            line-height: 1.9; 
-            margin-bottom: 35px; 
-            opacity: 0.95;
-            color: #f5f5f0;
-        }
-        
-        .about-text { 
-            max-width: 700px; 
-            margin: 0 auto; 
-            line-height: 1.9; 
-            font-size: 13px; 
-            opacity: 0.75; 
-            text-align: left;
-            color: #f5f5f0;
-        }
-        
+        .social-icons { display: flex; gap: 25px; margin-top: 100px; position: absolute; bottom: 60px; }
+        .social-icons a { color: #fff; font-size: 18px; transition: all 0.3s; opacity: 0.7; }
+        .social-icons a:hover { opacity: 1; transform: scale(1.2); }
+        .page-content { max-width: 1000px; margin: 0 auto; padding: 80px 60px; }
+        .page-title { font-size: 36px; letter-spacing: 3px; margin-bottom: 60px; text-align: center; font-weight: 600; }
+        .about-main { max-width: 700px; margin: 0 auto 50px; text-align: center; }
+        .about-main h2 { font-size: 16px; font-weight: 500; letter-spacing: 0.5px; line-height: 1.9; margin-bottom: 35px; opacity: 0.95; }
+        .about-text { max-width: 700px; margin: 0 auto; line-height: 1.9; font-size: 13px; opacity: 0.75; text-align: left; }
         .about-text p { margin-bottom: 18px; }
-        
         .projects-list { max-width: 800px; margin: 0 auto; }
-        
-        .project-tabs { 
-            display: flex; 
-            justify-content: center; 
-            gap: 40px; 
-            margin-bottom: 50px; 
-            border-bottom: 1px solid rgba(245, 245, 240, 0.1); 
-        }
-        
-        .project-tab { 
-            padding: 15px 0; 
-            font-size: 14px; 
-            letter-spacing: 1.5px; 
-            cursor: pointer; 
-            opacity: 0.5; 
-            transition: all 0.3s; 
-            border-bottom: 2px solid transparent;
-            color: #f5f5f0;
-            position: relative;
-        }
-        
-        .project-tab.active { 
-            opacity: 1; 
-            border-bottom-color: #f5f5f0;
-        }
-        
+        .project-tabs { display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; border-bottom: 1px solid #222; }
+        .project-tab { padding: 15px 0; font-size: 14px; letter-spacing: 1.5px; cursor: pointer; opacity: 0.5; transition: opacity 0.3s; border-bottom: 2px solid transparent; }
+        .project-tab.active { opacity: 1; border-bottom-color: #fff; }
         .project-tab:hover { opacity: 0.8; }
-        
         .project-section { display: none; }
         .project-section.active { display: block; }
-        
         .project-item {
             padding: 30px 0;
-            border-bottom: 1px solid rgba(245, 245, 240, 0.08);
+            border-bottom: 1px solid #222;
             position: relative;
-            transition: all 0.3s ease;
         }
-        
-        .project-item:hover {
-            padding-left: 10px;
-            border-bottom-color: rgba(245, 245, 240, 0.2);
-        }
-        
         .project-item:last-child { border-bottom: none; }
-        
         .project-status {
             position: absolute;
             right: 0;
@@ -421,54 +225,25 @@
             font-weight: 600;
             letter-spacing: 1px;
         }
-        
-        .sold-out { color: #ff6b6b; }
-        
+        .sold-out { color: #ff3333; }
         .buy-link {
-            color: #f5f5f0;
+            color: #fff;
             text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid rgba(245, 245, 240, 0.4);
+            padding: 8px 20px;
+            border: 1px solid #fff;
             border-radius: 2px;
             transition: all 0.3s;
             font-size: 11px;
             letter-spacing: 1px;
-            background: rgba(245, 245, 240, 0.05);
-            display: inline-block;
         }
-        
         .buy-link:hover {
-            background: rgba(245, 245, 240, 0.15);
-            border-color: rgba(245, 245, 240, 0.7);
-            transform: translateY(-2px);
+            background: #fff;
+            color: #000;
         }
-        
-        .project-year { 
-            font-size: 11px; 
-            opacity: 0.5; 
-            letter-spacing: 1px; 
-            margin-bottom: 8px;
-            color: #f5f5f0;
-        }
-        
-        .project-title { 
-            font-size: 17px; 
-            font-weight: 500; 
-            letter-spacing: 0.3px; 
-            margin-bottom: 10px;
-            color: #f5f5f0;
-        }
-        
-        .project-info { 
-            font-size: 11px; 
-            opacity: 0.55; 
-            letter-spacing: 0.3px; 
-            line-height: 1.6;
-            color: #f5f5f0;
-        }
-        
+        .project-year { font-size: 11px; opacity: 0.5; letter-spacing: 1px; margin-bottom: 8px; }
+        .project-title { font-size: 17px; font-weight: 500; letter-spacing: 0.3px; margin-bottom: 10px; }
+        .project-info { font-size: 11px; opacity: 0.55; letter-spacing: 0.3px; line-height: 1.6; }
         .gallery-section { margin-bottom: 80px; }
-        
         .slider-container {
             position: relative;
             max-width: 800px;
@@ -476,162 +251,47 @@
             touch-action: pan-y;
             pointer-events: auto;
         }
-        
-        .slider { 
-            overflow: hidden; 
-            border-radius: 2px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(245, 245, 240, 0.05);
-        }
-        
+        .slider { overflow: hidden; border-radius: 2px; }
         .slides { display: flex; transition: transform 0.4s ease; }
         .slide { min-width: 100%; aspect-ratio: 3/2; }
-        
         .slide img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            background: linear-gradient(135deg, #0a2412 0%, #0d3a1a 100%);
+            background: #0a0a0a;
             user-select: none;
             -webkit-user-select: none;
             -webkit-user-drag: none;
             -webkit-touch-callout: none;
-            filter: brightness(1.05) contrast(1.1) saturate(1.15);
         }
-        
         .slider-btn { pointer-events: auto; }
-        .slider-btn { 
-            position: absolute; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            background: rgba(245, 245, 240, 0.08); 
-            border: 1px solid rgba(245, 245, 240, 0.15);
-            color: #f5f5f0; 
-            font-size: 18px; 
-            padding: 10px 14px; 
-            cursor: pointer; 
-            transition: all 0.3s; 
-            z-index: 10;
-        }
-        
-        .slider-btn:hover { 
-            background: rgba(245, 245, 240, 0.15);
-            border-color: rgba(245, 245, 240, 0.3);
-        }
-        
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.06); border: none; color: #fff; font-size: 18px; padding: 10px 14px; cursor: pointer; transition: background 0.3s; z-index: 10; }
+        .slider-btn:hover { background: rgba(255,255,255,0.12); }
         .slider-btn.prev { left: 12px; }
         .slider-btn.next { right: 12px; }
-        
         .slider-dots { text-align: center; margin-top: 18px; }
-        .dot { 
-            display: inline-block; 
-            width: 5px; 
-            height: 5px; 
-            border-radius: 50%; 
-            background: rgba(245, 245, 240, 0.2); 
-            margin: 0 5px; 
-            cursor: pointer; 
-            transition: all 0.3s; 
-        }
-        
-        .dot.active { background: rgba(245, 245, 240, 0.8); }
-        
-        .project-description { 
-            max-width: 800px; 
-            margin: 20px auto 0; 
-            padding: 0; 
-            background: transparent; 
-            border: none; 
-            border-radius: 0; 
-        }
-        
-        .project-meta { 
-            font-size: 11px; 
-            opacity: 0.6; 
-            margin-bottom: 18px; 
-            line-height: 1.8; 
-            padding: 20px; 
-            background: rgba(245, 245, 240, 0.03);
-            border: 1px solid rgba(245, 245, 240, 0.1); 
-            border-radius: 2px;
-            color: #f5f5f0;
-            border-left: 3px solid rgba(245, 245, 240, 0.3);
-        }
-        
+        .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #333; margin: 0 5px; cursor: pointer; transition: background 0.3s; }
+        .dot.active { background: #999; }
+        .project-description { max-width: 800px; margin: 20px auto 0; padding: 0; background: transparent; border: none; border-radius: 0; }
+        .project-meta { font-size: 11px; opacity: 0.6; margin-bottom: 18px; line-height: 1.8; padding: 20px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 2px; }
         .project-meta span { display: block; }
-        
-        .project-description p { 
-            font-size: 12px; 
-            line-height: 1.8; 
-            opacity: 0.7; 
-            margin-bottom: 12px;
-            color: #f5f5f0;
-        }
-        
+        .project-description p { font-size: 12px; line-height: 1.8; opacity: 0.7; margin-bottom: 12px; }
         .project-description p:last-child { margin-bottom: 0; }
-        
-        .project-highlight { 
-            font-size: 11px; 
-            opacity: 0.5; 
-            margin-top: 15px; 
-            font-style: italic;
-            color: #f5f5f0;
-        }
-        
+        .project-highlight { font-size: 11px; opacity: 0.5; margin-top: 15px; font-style: italic; }
         .ticket-content { max-width: 600px; margin: 0 auto; }
-        .ticket-info { margin-bottom: 50px; padding: 40px; background: rgba(245, 245, 240, 0.03); border: 1px solid rgba(245, 245, 240, 0.1); border-radius: 2px; }
-        .ticket-info h3 { font-size: 20px; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600; color: #f5f5f0; }
-        .ticket-info p { font-size: 13px; line-height: 1.8; opacity: 0.75; color: #f5f5f0; }
-        .ticket-btn { display: inline-block; width: 100%; padding: 14px; background: rgba(245, 245, 240, 0.1); color: #f5f5f0; text-decoration: none; letter-spacing: 1.5px; font-size: 13px; font-weight: 600; border: 1px solid rgba(245, 245, 240, 0.3); border-radius: 2px; transition: all 0.3s; cursor: pointer; }
-        .ticket-btn:hover:not(.disabled) { background: rgba(245, 245, 240, 0.15); border-color: rgba(245, 245, 240, 0.5); }
-        .ticket-btn.disabled { background: rgba(245, 245, 240, 0.05); color: rgba(245, 245, 240, 0.4); cursor: not-allowed; border-color: rgba(245, 245, 240, 0.1); }
-        .coming-soon { text-align: center; padding: 40px; opacity: 0.5; font-size: 14px; letter-spacing: 2px; color: #f5f5f0; }
-        
-        .contact-content { 
-            max-width: 500px; 
-            margin: 0 auto; 
-            text-align: center; 
-        }
-        
+        .ticket-info { margin-bottom: 50px; padding: 40px; background: #0a0a0a; border: 1px solid #222; border-radius: 2px; }
+        .ticket-info h3 { font-size: 20px; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600; }
+        .ticket-info p { font-size: 13px; line-height: 1.8; opacity: 0.75; }
+        .ticket-btn { display: inline-block; width: 100%; padding: 14px; background: #fff; color: #000; text-decoration: none; letter-spacing: 1.5px; font-size: 13px; font-weight: 600; border-radius: 2px; transition: all 0.3s; border: none; cursor: pointer; }
+        .ticket-btn.disabled { background: #444; color: #999; cursor: not-allowed; opacity: 0.5; }
+        .coming-soon { text-align: center; padding: 40px; opacity: 0.5; font-size: 14px; letter-spacing: 2px; }
+        .contact-content { max-width: 500px; margin: 0 auto; text-align: center; }
         .contact-icons { display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; }
-        
-        .contact-icon { 
-            font-size: 32px; 
-            margin-bottom: 15px; 
-            opacity: 0.8; 
-            transition: all 0.3s; 
-            color: #f5f5f0; 
-        }
-        
-        .contact-item a:hover .contact-icon { 
-            opacity: 1; 
-            transform: scale(1.1); 
-        }
-        
-        .contact-divider { 
-            width: 40px; 
-            height: 1px; 
-            background: rgba(245, 245, 240, 0.2); 
-            margin: 50px auto; 
-        }
-        
-        .contact-text { 
-            font-size: 13px; 
-            line-height: 2; 
-            opacity: 0.7;
-            color: #f5f5f0;
-        }
-        
-        footer { 
-            padding: 40px; 
-            text-align: center; 
-            opacity: 0.4; 
-            font-size: 11px; 
-            letter-spacing: 2px; 
-            border-top: 1px solid rgba(245, 245, 240, 0.1);
-            color: #f5f5f0;
-        }
-        
+        .contact-icon { font-size: 32px; margin-bottom: 15px; opacity: 0.8; transition: all 0.3s; color: #fff; }
+        .contact-item a:hover .contact-icon { opacity: 1; transform: scale(1.1); }
+        .contact-divider { width: 40px; height: 1px; background: #333; margin: 50px auto; }
+        .contact-text { font-size: 13px; line-height: 2; opacity: 0.7; }
+        footer { padding: 40px; text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 2px; border-top: 1px solid #333; }
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
             .menu-button { display: block; }
@@ -649,6 +309,7 @@
     </style>
 </head>
 <body>
+    <!-- 인트로 애니메이션 -->
     <div id="intro">
         <div class="intro-text" id="introText">TRANS</div>
         <div class="swipe-indicator" onclick="goToHome()">
@@ -707,10 +368,10 @@
         <div class="page-content">
             <h1 class="page-title">ABOUT</h1>
             <div class="about-main">
-                <h2>TRANS = 변(變)<br>우리는 고정되기를 거부한다. 우리는 만남과 충돌을 상상한다.</h2>
+                <h2>TRANS = 變(변)<br>우리는 고정되기를 거부한다. 우리는 만남과 충돌을 상상한다.</h2>
             </div>
             <div class="about-text">
-                <p>TRANS는 '변(變)'의 뜻처럼, 고정되지 않고 느슨함 없이 움직이며 확장하는 예술 프로젝트입니다. 다양한 예술 장르가 만나 서로를 변화시키며, 공동창작(co-creation)의 진짜 가능성을 탐구하고 있습니다.</p>
+                <p>TRANS는 '변(變)–'의 뜻처럼, 고정되지 않고 끊임없이 움직이며 확장하는 예술 프로젝트입니다. 다양한 예술 장르가 만나 서로를 변화시키며, 공동창작(co-creation)의 진짜 가능성을 탐구하고 있습니다.</p>
                 <p>단순한 협업을 넘어, 각자의 고유성이 충돌하고 교차하는 과정을 통해 '공존 가능한 예술 생태계'를 상상합니다. TRANS는 하나의 완성된 형태가 아닙니다. 과정 속에서 피어나는 질문, 실패, 충돌, 변화를 그대로 껴안으며 '어디로 튈지 모르는 가능성의 공간'을 확장해 나갑니다.</p>
             </div>
         </div>
@@ -744,10 +405,10 @@
                         <span>일자: 2023년 10월 21-22일</span>
                         <span>장소: Studio Mong</span>
                         <span>소요시간: 55분</span>
-                        <span>참여자: 오현탁, 오명선, 이현선</span>
+                        <span>참여자: 오현택, 오명석, 이현석</span>
                     </div>
                     <p>변화하는 우리를 관찰하는 단계. 어떤 모습으로 우리가 변화하고 변신할지 확실하지 않지만, 우리가 변화하고 있는 상태를 인지하고 움직이는 몸과 소리에 집중합니다.</p>
-                    <p>시각으로 볼 수 있는 몸을 &lt;형체&gt;, 청각으로 들리는 소리를 &lt;음체&gt;로 정의합니다. 형체는 형체와, 형체는 음체와, 음체는 다시 형체와 마치 서로 소통하는 듯한 대화를 주고받으며, 청각적이고 시각적으로 모든 감각에 영향을 미치며 변화를 이끝니다.</p>
+                    <p>시각으로 볼 수 있는 몸을 &lt;형체&gt;, 청각으로 들리는 소리를 &lt;음체&gt;로 정의합니다. 형체는 형체와, 형체는 음체와, 음체는 다시 형체와 마치 서로 소통하는 듯한 대화를 주고받으며, 청각적이고 시각적으로 모든 감각에 영향을 미치며 변화를 촉진합니다.</p>
                     <p>이것은 마치 바이러스처럼 퍼지는 웃음과 같이 보입니다. 흥미롭게도 서로의 소통이 원활할 때도 있지만 오류가 발생하여 다른 방향이나 반대 방향으로 변화가 일어날 수도 있습니다. 그들은 어떤 형태로 변화하고 어느 방향으로 향하고 있을까요?</p>
                     <p class="project-highlight">&lt;대화와 소통&gt; 각자만의 표현방법, 서로의 공통언어</p>
                 </div>
@@ -771,11 +432,11 @@
                         <span>일자: 2024년 9월 28-29일</span>
                         <span>장소: 문래예술극장 박스시어터</span>
                         <span>소요시간: 60분 (15분 pre-show)</span>
-                        <span>참여자: 이현선, 윤혜진, 조선재, 오현탁, 김건우, 윤대원, 김지우</span>
+                        <span>참여자: 이현석, 윤혜진, 조선재, 오현택, 김건우, 윤대원, 김지우</span>
                     </div>
                     <p>'사랑과 폭력은 매우 유사할 수 있지 않을까?'라는 질문을 대화의 시작으로 우리들의 관계, 대화의 모습과 방식, 이로 인해 충돌과 변화, 그리고 때로는 서로를 수용하는 우리들의 태도를 바라보는 것에서 출발합니다.</p>
                     <p>트랜스 공연은 '사랑과 폭력'이라는 주제를 통해 대화와 관계에서 나타나는 복합적인 모습을 무대 위로 소환합니다.</p>
-                    <p>일상 대화를 바탕으로 개인의 의견 변화와 갈등을 탐구하며, 퍼포머의 몸(바디)을 중심으로 라이트, 사운드, 영상 등 다양한 매체를 활용하여 관객의 감각적 경험을 확장하고자 합니다. 관객은 무대 위 대화를 시각화한 퍼포밴스를 통해 대화와 관계 속에서 어떻게 변화하는지를 보여주는 것이 바로 트랜스 작업이 추구하는 부분입니다.</p>
+                    <p>일상 대화를 바탕으로 개인의 의견 변화와 갈등을 탐구하며, 퍼포머의 몸(바디)을 중심으로 라이트, 사운드, 영상 등 다양한 매체를 활용하여 관객의 감각적 경험을 확장하고자 합니다. 관객은 무대 위 대화를 시각화한 퍼포밍을 통해 대화와 관계 속에서 어떻게 변화하는지를 보여주는 것이 바로 트랜스 작업이 추구하는 부분입니다.</p>
                 </div>
             </div>
 
@@ -797,10 +458,10 @@
                         <span>일자: 2025년 8월 5-6일</span>
                         <span>장소: 서강대학교 메리홀 대극장</span>
                         <span>소요시간: 45분 (10분 pre-open)</span>
-                        <span>참여자: 오현탁, 오명선 (김민우)</span>
+                        <span>참여자: 오현택, 오명석 (김민우)</span>
                     </div>
                     <p>《TRANS III》는 개인의 리듬과 감각이 외부 구조와 어떻게 충돌하고 흔들리는지를 물리적으로 탐구하는 퍼포먼스다. "개별의 동일성"을 요구하는 현대 사회의 흐름 속에서, '효율'과 '표준화'라는 명분 아래 개인의 고유한 리듬과 선택이 얼마나 쉽게 동일화되는지를 바라본다.</p>
-                    <p>신체는 물리적 작용을 통해 균형을 무너뜨리고, 다시 세우고, 반복하며 외부 조건에 반응하거나 무시하며 자신의 리듬을 지켜가려는 흔들림의 움직임을 이어간다. 동시에 사운드는 공간의 또 다른 층위를 구성해 눈에 보이지 않는 '둘 번째 무대'를 만들어낸다.</p>
+                    <p>신체는 물리적인 작용을 통해 균형을 무너뜨리고, 다시 세우고, 반복하며 외부 조건에 반응하거나 무시하며 자신의 리듬을 지켜가려는 흔들림의 움직임을 이어간다. 동시에 사운드는 공간의 또 다른 층위를 구성해 눈에 보이지 않는 '두 번째 무대'를 만들어낸다.</p>
                     <p>《TRANS III》는 관객에게 직접적으로 메시지를 전달하지 않고 다음과 같은 질문을 던진다.</p>
                     <p class="project-highlight">"우리는 스스로 움직이고 있는가, 아니면 움직이게 되는가?"</p>
                 </div>
@@ -809,7 +470,7 @@
             <div class="projects-list" style="margin-top: 40px;">
                 <div class="project-item">
                     <div class="project-year">2026</div>
-                    <div class="project-title">포용 / Embrace</div>
+                    <div class="project-title">포옹 / Embrace</div>
                     <div class="project-info">SeMA West Seoul Museum of Art · Upcoming</div>
                 </div>
             </div>
@@ -852,7 +513,7 @@
                     </div>
                 </div>
 
-                <!-- 상의회 및 애프터톡 -->
+                <!-- 상영회 및 애프터토크 -->
                 <div class="gallery-section">
                     <div class="projects-list">
                         <div class="project-item">
@@ -906,19 +567,34 @@
     <footer><p>© 2026 TRANS. ALL RIGHTS RESERVED.</p></footer>
 
     <script>
-        const words = ['TRANSITION', 'TRANSFORM', 'TRANSCEND', 'TRANSGRESS', 'TRANSLATION', 'TRANSPORTATION', 'TRANSITORY', 'TRANSMUTATION'];
+        // 인트로 애니메이션
+        const words = [
+            'TRANSITION',
+            'TRANSFORM', 
+            'TRANSCEND',
+            'TRANSGRESS',
+            'TRANSLATION',
+            'TRANSPORTATION',
+            'TRANSITORY',
+            'TRANSMUTATION'
+        ];
         
-        let currentWordIndex = 0, isDeleting = false, currentText = '', charIndex = 0;
+        let currentWordIndex = 0;
+        let isDeleting = false;
+        let currentText = '';
+        let charIndex = 0;
         const introText = document.getElementById('introText');
         const intro = document.getElementById('intro');
-        let touchStartY = 0, touchEndY = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
         
+        // 각 단어별 속도 프리셋 (40% 더 빠르게)
         const speedPresets = [
-            { type: 60, delete: 36, pause: 600 },
-            { type: 84, delete: 54, pause: 780 },
-            { type: 72, delete: 42, pause: 660 },
-            { type: 54, delete: 30, pause: 540 },
-            { type: 96, delete: 60, pause: 840 },
+            { type: 60, delete: 36, pause: 600 },   // 빠름
+            { type: 84, delete: 54, pause: 780 },   // 느림
+            { type: 72, delete: 42, pause: 660 },   // 중간
+            { type: 54, delete: 30, pause: 540 },   // 매우 빠름
+            { type: 96, delete: 60, pause: 840 },   // 매우 느림
         ];
         
         let currentSpeed = speedPresets[0];
@@ -975,6 +651,7 @@
             }, 600);
         }
         
+        // 스와이프 감지 (모바일)
         intro.addEventListener('touchstart', (e) => {
             touchStartY = e.changedTouches[0].screenY;
         }, { passive: true });
@@ -987,27 +664,30 @@
             }
         }, { passive: true });
         
+        // 클릭 및 키보드 감지 (데스크톱만)
         if (window.innerWidth > 768) {
             intro.addEventListener('click', goToHome);
         }
-        
         document.addEventListener('keydown', (e) => {
             if (intro.style.display !== 'none' && window.innerWidth > 768) {
                 goToHome();
             }
         });
         
+        // 인트로 시작
         window.addEventListener('load', () => {
-            // 인트로를 본 적이 없으면 인트로 표시
-            if (sessionStorage.getItem('introSeen') !== 'true') {
-                getRandomSpeed();
-                setTimeout(typeWriter, 500);
-            } else {
+            // 인트로를 이미 봤는지 확인
+            const introSeen = sessionStorage.getItem('introSeen');
+            if (introSeen === 'true') {
                 intro.style.display = 'none';
+                return;
             }
+            
+            getRandomSpeed();
+            setTimeout(typeWriter, 500);
         });
 
-        const images = {
+         const images = {
             '2023': ['1p6PZxTKRD5CD7Bsn-4GBIdua8SXnq2X2', '1oicnoeqiKautvJ9Jigldh3hjmmV2J77R', '18iFtU2OafU-eO98C7qQwayWHOD-9ioBM', '1KrXSX_kHJHCdmL_AWy9oBgFX5t9L9gTy', '1gSV6heehSsdV1TE-kA_-iZpoUrCMWxgW', '1XvIE7-Pj8aBBav6tapT-kPAmye4BhNug', '17LebIxJA3-25Zv0jLDqcEm8q-9T6ScpY', '1Jzj6AAypp4RrprUgG1v-R8kJgx5R_dk1', '1dn8-Ln36lha5NolxOpVP5scmMht9prLG', '1xNpvPaixBtGmoDuFfI7uoYVGHq8OIJPj', '10awSVGmK6Eiq6oPmUwZP_PHzFxozEzIw'],
             '2024': ['1k_3_z8ujfQfRGfqJHVnr5oG2WwRSLbgm', '1LXw5_AaX6qyrVrVrMTLiaI9tAsrQ7uMf', '1djqpX29I4MYvbOZUxWUw-vghvA9yXoxX', '1w49od96-CG_MCxvxhI7ajGGG4MvghofB', '1LFswUDUn8K9FiD7KD4Mc7CvjO6WPEBh9', '1RMQPja41SnwPu-4xcAZmTMiOicxBibio', '1Z1CMv2bCFjaXev0FP5VJzGy-f27S-3y9', '1NI7ElywBHX4Tg-yTbL3eCfJ0al9zIJ6S', '1br82iSJieixG3RBqeIDFL7WutD4uAvIU', '1O7C54rCzHRTU2MCcOJu0l2lXBOPSG0BP'],
             '2025': ['1WklQ1hmqxJDgI0XLaRvNk8hxLsDM7_1P', '1mB2_LN1QDE46J8loHGWGp6zKRRmpxeob', '1hO-NBfLS6J92SJqN3Nq49jm0ZLgtnSUB', '1xftK0qkdlEPxk5u1s_rglzjCArRAU4-C', '1fSKmyOI4knyCSwM57ck7nCTC4wa2Eo4Q', '1ysgAVxUPYOAFnZNC6s1jiof36d_04JHL', '1BJ-rCrvTUkDpiAxmX7X3hcbH3y7tgXFc', '16xxo4XJMBGm6T9e8uRgx4CuGT0Xh3K0N', '1EC5J9RPJ3GXXTMxS5-OWmmLBoIcY_e0T', '1W560zMNkxmCypqcnQlKVr7EDp8cvyN70'],
@@ -1015,7 +695,6 @@
             'archive2': ['1DGVQTrzpeb0psf20F44_gggRQMfQdgsx', '1SXz_MbKx6tJFd2k07qwc7XF1B1uo_1JV'],
             'archive3': ['1flTZVeux92GsaHcs1MOcBMuM08_QZICV', '1MRBbo1LSXifJ3_q19sopqShsedYHyBEp', '1q5OY9iHulyUTKa3nSoqjLe36Ckwxl92C', '1r8omgtSLCfdmQmLDSRGGHRlDoyaOserc', '183Rwo2bBl6IyMOpsaS_OhOkCdgYFFLhU', '1oK1Vh4WDft35bvj2SIu70hH3SszpNsBG', '1j_apQ91rLKbG5P35ux9nc5LWNOvPVfJe']
         };
-        
         let currentSlide = { '2023': 0, '2024': 0, '2025': 0, 'archive1': 0, 'archive2': 0, 'archive3': 0 };
         let touchStartX = 0, touchEndX = 0;
 
@@ -1024,6 +703,7 @@
             images[year].forEach((id, i) => {
                 const s = document.createElement('div');
                 s.className = 'slide';
+                // 모바일에서는 작은 이미지 로드
                 const size = window.innerWidth <= 768 ? 'w800' : 'w1200';
                 s.innerHTML = `<img src="https://drive.google.com/thumbnail?id=${id}&sz=${size}" alt="${year} ${i + 1}" loading="lazy">`;
                 sc.appendChild(s);
@@ -1069,6 +749,7 @@
             }, 50);
             window.history.pushState({ page: id }, '', `#${id}`);
             
+            // 모바일 홈 버튼 표시/숨김
             const homeBtn = document.getElementById('homeBtn');
             if (window.innerWidth <= 768) {
                 if (id === 'home') {
@@ -1112,16 +793,19 @@
         document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
         document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
         
+        // 모바일 이미지 롱프레스 방지
         document.addEventListener('touchstart', function(e) {
             if (e.target.tagName === 'IMG') {
                 e.target.style.webkitTouchCallout = 'none';
             }
         }, { passive: true });
         
+        // 이미지 선택 방지
         document.addEventListener('selectstart', e => {
             if (e.target.tagName === 'IMG') e.preventDefault();
         });
         
+        // iOS Safari 이미지 저장 방지
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('contextmenu', e => e.preventDefault());
             img.style.webkitUserSelect = 'none';
@@ -1129,4 +813,3 @@
         });
     </script>
 </body>
-</html>
